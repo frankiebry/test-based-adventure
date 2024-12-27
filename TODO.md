@@ -6,7 +6,12 @@
 - [ ] Add inventory using a dictionary
 - [ ] Display available commands
 - [ ] Add code that checks if main?
+- [ ] Welcome message + display available commands
+- [ ] Type help to display commands again (monster doesn't move)
+- [ ] Cheat command instead of debug (monster doesn't move)
+- [ ] When lighting a torch, draw an actual map as a grid
 
 ### Issues
 - [ ] If the player types "go " + anything other than a cardinal direction, it just says "the way is blocked"
 - [ ] Functions need to be better named and commented
+- [ ] Comment everything that doesn't have a clear purpose
