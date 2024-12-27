@@ -1,10 +1,6 @@
 import sys, time, os
 import random
 
-# Define the size of the map
-GRID_WIDTH = random.randint(2,10)
-GRID_HEIGHT = random.randint(2,10)
-
 # Make text output slower for immersion
 def typewriter(message, speed):
     for char in message:
@@ -23,12 +19,38 @@ def typewriter(message, speed):
 def treasure_found(player_position, treasure_position):
     return player_position == treasure_position
 
+# Draw the map
+def draw_map(player_position):
+    # Create an empty grid of X's
+    grid = [['X' for _ in range(GRID_WIDTH)] for _ in range(GRID_HEIGHT)]
+    
+    # Mark the player's position with 'O'
+    player_x, player_y = player_position
+    grid[player_y][player_x] = 'O'
+    
+    # Mark the treasure's position with 'O'
+    treasure_x, treasure_y = treasure_position
+    grid[treasure_y][treasure_x] = 'T'
+    
+    # Print the map
+    for row in grid:
+        print(''.join(row))
+
 # Player lights a torch and looks at the map
 def light_torch(position, num_of_torches):
     if num_of_torches > 0:
         num_of_torches -= 1
         typewriter("You light a torch and check your map.",0.05)
-        typewriter(f"This cave is {GRID_WIDTH} paces from east to west and {GRID_HEIGHT} paces north to south",0.05)
+        print(" ")
+        
+        # Display the map
+        draw_map(position)
+        print(" ")
+        
+        typewriter(
+            f"This cave is {GRID_WIDTH} paces wide from east to west "
+            f"and {GRID_HEIGHT} paces tall from north to south", 0.05
+        )
         typewriter(f"Your current coordinates are: {position}.",0.05)
         typewriter(f"The light has gone out. You have {num_of_torches} torches left",0.05)
         print(" ")
@@ -53,7 +75,7 @@ def display_commands():
 
 # Use to debug, disable this function during gameplay
 def debug():
-    print(f"The map is {GRID_WIDTH} wide and {GRID_HEIGHT} tall.")
+    print(f"The map is {GRID_WIDTH} paces wide and {GRID_HEIGHT} paces tall.")
     print(f"You are at position {player_position}.")
     print(f"The treasure is at {treasure_position}.")
     print(f"The monster is at {monster.position}.")
@@ -101,6 +123,10 @@ class Monster:
             typewriter("Game Over!",0.05)
             return True
         return False
+
+# Define the size of the map
+GRID_WIDTH = random.randint(4,10)
+GRID_HEIGHT = random.randint(4,10)
 
 # Variables
 num_of_torches = 3
@@ -164,6 +190,7 @@ while True:
         if monster.check_if_caught(player_position):
             break  # End the game if the player was caught by the monster
     elif command == 'help'.strip().lower():
+        print(" ")
         display_commands()
     elif command == 'cheat'.strip().lower():
         debug()
