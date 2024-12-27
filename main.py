@@ -3,8 +3,16 @@ import random
 # Define the grid limits (no need for map_grid anymore)
 GRID_SIZE = 4  # The grid is 4x4, so valid coordinates are (0, 0) to (3, 3)
 
+# Check if player is in the same location as treasure
 def treasure_found(player_position, treasure_position):
     return player_position == treasure_position
+
+# Tell the player their current coordinates
+def reveal_position(position):
+    print("You light a torch and check your map.")
+    print(f"Your current coordinates are: {position}.")
+    print("The light has gone out")
+    print(" ")
 
 class Monster:
     def __init__(self, position):
@@ -37,11 +45,10 @@ monster = Monster((random.randint(0, GRID_SIZE - 1), random.randint(0, GRID_SIZE
 
 # Main game loop
 while True:
-    print(f"You are at position {player_position}.")
-    
-    # Use to debug, comment out during gameplay
+    # # Use to debug, comment out during gameplay
+    # print(f"You are at position {player_position}.")
     # print(f"The treasure is at {treasure_position}.")
-    print(f"The monster is at {monster.position}.")
+    # print(f"The monster is at {monster.position}.")
     
     command = input("What do you want to do?: ").strip().lower()
     
@@ -86,6 +93,11 @@ while True:
             monster.move()
             if monster.check_if_caught(player_position):
                 break  # End the game if the player was caught by the monster
+    elif command == 'look around'.strip().lower():
+        reveal_position(player_position)
+        monster.move()
+        if monster.check_if_caught(player_position):
+            break  # End the game if the player was caught by the monster
     else:
         print(f"I don't know what '{command}' means.")
         print(" ")
