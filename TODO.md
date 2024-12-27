@@ -5,6 +5,7 @@
 - [ ] Make it so that the monster can grab the treasure too?
 - [ ] Add inventory using a dictionary
 - [ ] Display available commands
+- [ ] Add code that checks if main?
 
 ### Issues
 - [ ] If the player types "go " + anything other than a cardinal direction, it just says "the way is blocked"
