@@ -4,11 +4,13 @@
 - [ ] Add inventory using a dictionary.
 - [ ] Add `if __name__ == '__main__':`
 - [ ] Add a "play again" option.
-- [ ] Change cheat (debug) to just show the map
+- [ ] Separate debug into another file?
+- [ ] Convert this entire game into a graphical version
 
 ### Issues
 - [ ] If the player types "go " + anything other than a cardinal direction, it just says "the way is blocked"
 - [ ] When there is one torch left it says "you have 1 torches left"
+- [ ] If/Else chain in main loop is unwieldly and hard to follow. Replace with match case?
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 - [ ] Functions need to be better named and commented. Use docstrings
 - [ ] Comment everything that doesn't have a clear purpose.

@@ -72,7 +72,6 @@ def display_commands():
 # Use to debug, disable this function during gameplay
 def debug(player_position, monster_position, treasure_position):
     draw_map(player_position, monster_position, treasure_position, show_treasure=True)
-    print(f"The treasure is at {treasure_position}.")
     print(" ")
 
 # Welcome Screen
