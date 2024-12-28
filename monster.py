@@ -38,8 +38,6 @@ class Monster:
 
     def check_if_caught(self, player_position):
         if self.position == player_position:
-            typewriter(f"You were caught by the monster!",0.05)
-            typewriter("Game Over!",0.05)
             return True
         return False
     

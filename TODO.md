@@ -11,6 +11,7 @@
 - [ ] Player and treasure should be separate classes as well?
 
 ### Issues
+- [ ] Added metal detector function but it's not working properly (silent when 2 squares away, slow beeping at diagonal, rapid when next to treasure and silent when right on top of it?)
 - [ ] When there is one torch left it says "you have 1 torches left"
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 - [ ] Functions need to be better named and commented. Use docstrings
