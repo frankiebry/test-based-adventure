@@ -20,34 +20,41 @@ def treasure_found(player_position, treasure_position):
     return player_position == treasure_position
 
 # Draw the map
-def draw_map(player_position):
+def draw_map(player_position, monster_position):
     # Create an empty grid of □'s
     grid = [['□ ' for j in range(GRID_WIDTH)] for i in range(GRID_HEIGHT)]
     
-    # Mark the player's position with '⧆ '
+    # Mark the searched positions with 'X'
+    for pos in searched_positions:
+        x, y = pos
+        grid[y][x] = 'X '
+    
+    # Mark the player's position with '⧆'
     player_x, player_y = player_position
     grid[player_y][player_x] = '⧆ '
-    
-    # # Mark the treasure's position with 'T'
-    # treasure_x, treasure_y = treasure_position
-    # grid[treasure_y][treasure_x] = 'T'
+        
+    # Mark the monster's position with 'M'
+    monster_x, monster_y = monster_position
+    grid[monster_y][monster_x] = 'M '
     
     # Print the map
     for row in grid:
         print(''.join(row))
 
 # Player lights a torch and looks at the map
-def light_torch(position, num_of_torches):
+def light_torch(player_position, monster_position, num_of_torches):
     if num_of_torches > 0:
         num_of_torches -= 1
         typewriter("You light a torch and check your map.",0.05)
         print(" ")
         
         # Display the map
-        draw_map(position)
+        draw_map(player_position, monster_position)
         print(" ")
         
         typewriter("The ⧆ icon indicates your position on the map",0.05)
+        typewriter("The X icon indicates indicates spots you've already searched for treasure",0.05)
+        typewriter("You see an ominous shadowy figure where M is marked on the map...",0.05)
         typewriter(f"The light has gone out. You have {num_of_torches} torches left",0.05)
         print(" ")
     else:
@@ -114,7 +121,7 @@ class Monster:
 
     def check_if_caught(self, player_position):
         if self.position == player_position:
-            typewriter(f"You were caught by the monster at position {self.position}!",0.05)
+            typewriter(f"You were caught by the monster!",0.05)
             typewriter("Game Over!",0.05)
             return True
         return False
@@ -126,6 +133,7 @@ MAP_SIZE = (GRID_WIDTH,GRID_HEIGHT)
 
 # Variables
 num_of_torches = 3
+searched_positions = [] # List to track the locations where the player has searched for treasure
 
 # Starting positions
 player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
@@ -176,12 +184,15 @@ while True:
             typewriter("There is nothing here",0.05)
             print(" ")
             
+            # Add the current position to the searched positions list
+            searched_positions.append(player_position)
+            
             # Move the monster and check if the player is caught
             monster.move()
             if monster.check_if_caught(player_position):
                 break  # End the game if the player was caught by the monster
     elif command == 'light a torch'.strip().lower():
-        num_of_torches = light_torch(player_position, num_of_torches)  # Pass and update the number of torches
+        num_of_torches = light_torch(player_position, monster.position, num_of_torches)
         monster.move()
         if monster.check_if_caught(player_position):
             break  # End the game if the player was caught by the monster
