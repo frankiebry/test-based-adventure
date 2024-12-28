@@ -1,6 +1,7 @@
 import sys
 import time
 
+# Make text output slower for immersion
 def typewriter(message, speed):
     for char in message:
         sys.stdout.write(char)

@@ -1,22 +1,7 @@
-import sys, time
 import random
 from monster import Monster
 from typewriter import typewriter
 from settings import GRID_WIDTH, GRID_HEIGHT
-
-# Make text output slower for immersion
-def typewriter(message, speed):
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-
-        if char != "\n":
-            time.sleep(speed)
-        else:
-            time.sleep(1)
-            
-    sys.stdout.write("\n")  # Ensure a newline at the end of the message
-    sys.stdout.flush()
 
 # Check if player is in the same location as treasure
 def treasure_found(player_position, treasure_position):

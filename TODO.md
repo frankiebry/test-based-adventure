@@ -1,8 +1,8 @@
 ### Todo
-- [ ] Monster now chases the player but difficulty has spiked. Either slow the monster down (can only move once every two turns?) and/or it only chases when it gets close to the player.
+- [ ] Make the monster beeline to the players last known position after the torch is lit? Unless it's 2 tiles away, then just chase like normal
 - [ ] Add hint for where the treasure is?
 - [ ] Add inventory using a dictionary.
-- [ ] Add code that checks if main?
+- [ ] Add `if __name__ == '__main__':`
 - [ ] Add a "play again" option.
 - [ ] Change cheat (debug) to just show the map
 
