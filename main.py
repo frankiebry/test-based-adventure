@@ -124,12 +124,12 @@ class Monster:
             self.position = (self.position[0] - 1, self.position[1])
 
     def is_near_player(self, player_position):
-        # Manhattan distance: sum of the absolute differences in x and y
+        """Manhattan distance: sum of the absolute differences in x and y"""
         distance = abs(self.position[0] - player_position[0]) + abs(self.position[1] - player_position[1])
         return distance <= 2  # Monster chases the player if within 2 steps
 
     def chase_player(self, player_position):
-        # Chase the player by moving towards them
+        """Chase the player by moving towards them"""
         if self.position[0] < player_position[0]:
             self.position = (self.position[0] + 1, self.position[1])
         elif self.position[0] > player_position[0]:
@@ -147,13 +147,14 @@ class Monster:
         return False
     
     def move(self, player_position):
-        # Monster only moves every two turns
+        """Monster only moves every two turns"""
         self.turns_since_move += 1
         if self.turns_since_move >= 2:
             self.turns_since_move = 0
-            # If the monster is close to the player, it chases the player
+            # If the monster is close to the player, it chases the player,
             if self.is_near_player(player_position):
                 self.chase_player(player_position)
+            # else it moves randomly
             else:
                 self.random_move()
 

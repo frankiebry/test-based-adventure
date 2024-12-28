@@ -10,7 +10,7 @@
 - [ ] If the player types "go " + anything other than a cardinal direction, it just says "the way is blocked"
 - [ ] When there is one torch left it says "you have 1 torches left"
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
-- [ ] Functions need to be better named and commented.
+- [ ] Functions need to be better named and commented. Use docstrings
 - [ ] Comment everything that doesn't have a clear purpose.
 - [ ] Find a more elegant solution to the following ~
 
