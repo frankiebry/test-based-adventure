@@ -4,7 +4,7 @@
 - [ ] Change look for treasure to "dig?"
 - [ ] Add inventory using a dictionary.
 - [ ] Allow player to find more items
-- [ ] Warn player id monster is close
+- [ ] Warn player when monster is close
 - [ ] Add `if __name__ == '__main__':`
 - [ ] Add a "play again" option.
 - [ ] Separate debug into another file?
