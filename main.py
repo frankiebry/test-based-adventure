@@ -54,6 +54,20 @@ def light_torch(player_position, monster_position, num_of_torches):
         typewriter("You don't have any torches left",0.05)
     return num_of_torches
 
+# Sweep for treasure
+def sweep_for_treasure(player_position, treasure_position):
+    """Using Manhattan distance to provide a hint"""
+    player_x, player_y = player_position
+    treasure_x, treasure_y = treasure_position
+    distance = abs(player_x - treasure_x) + abs(player_y - treasure_y)
+    
+    if distance == 1:
+        typewriter("The metal detector is beeping rapidly!", 0.05)
+    elif distance <= 2:
+        typewriter("The metal detector is slowly beeping.", 0.05)
+    else:
+        typewriter("The metal detector is silent.", 0.05)
+
 # Display the available commands
 def display_commands():
     typewriter("*****************",0.02)
@@ -64,8 +78,9 @@ def display_commands():
     typewriter("GO SOUTH",0.02)
     typewriter("GO EAST",0.02)
     typewriter("GO WEST",0.02)
-    typewriter("LOOK FOR TREASURE",0.02)
-    typewriter("LIGHT A TORCH (check your map)",0.02)
+    typewriter("DIG",0.02)
+    typewriter("LIGHT TORCH (check your map)",0.02)
+    typewriter("SWEEP (use metal detector)",0.02)
     typewriter("HELP (displays these commands again)",0.02)
     print("")
 
@@ -83,9 +98,11 @@ def welcome_screen():
     if response == 'n' or response == 'no':
         print(" ")
         typewriter("Here are the rules:",0.05)
-        typewriter("You start in a dark cave. Each turn you can go one pace North, South, East or West.",0.05)
-        typewriter("Or you can spend your turn looking for treasure.",0.05)
-        typewriter("Or you can spend your turn to light a torch and check your map. You only get 3 torches.",0.05)
+        typewriter("You are in a dark cave. Each turn you can use a command to do one of the following.",0.05)
+        typewriter("- Move north, south, east or west",0.05)
+        typewriter("- Use a metal detector.",0.05)
+        typewriter("- Dig for treasure.",0.05)
+        typewriter("- Light a torch and check your map. You only get 3 torches.",0.05)
         typewriter("Beware, there is a monster in the cave with you. Each turn the monster moves one pace.",0.05)
         typewriter("The game will end if you find the treasure... or the monster catches you. Good luck!",0.05)
         print(" ")
@@ -137,7 +154,7 @@ while True:
             else:
                 typewriter("The way is blocked.", 0.05)
 
-        case "look for treasure":
+        case "dig":
             if treasure_found(player_position, treasure_position):
                 typewriter("Congratulations! You found the treasure!", 0.05)
                 typewriter("Game Over", 0.05)
@@ -146,8 +163,11 @@ while True:
                 typewriter("There is nothing here.", 0.05)
                 searched_positions.append(player_position)
 
-        case "light a torch":
+        case "light torch":
             num_of_torches = light_torch(player_position, monster.position, num_of_torches)
+
+        case "sweep":
+            sweep_for_treasure(player_position, treasure_position)
 
         case "help":
             display_commands()
