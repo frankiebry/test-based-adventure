@@ -1,5 +1,4 @@
 ### Todo
-- [ ] Typo RIGHT in the title... change "test" to "text"
 - [ ] Coordinate system is not intuitive, come up with something easier to understand
 - [ ] Map symbols are not intuitive, come up with something easier to understand
 - [ ] Right now the monster moves randomly, make the monster "chase" or follow the player?

@@ -21,16 +21,16 @@ def treasure_found(player_position, treasure_position):
 
 # Draw the map
 def draw_map(player_position):
-    # Create an empty grid of X's
-    grid = [['X' for _ in range(GRID_WIDTH)] for _ in range(GRID_HEIGHT)]
+    # Create an empty grid of □'s
+    grid = [['□ ' for j in range(GRID_WIDTH)] for i in range(GRID_HEIGHT)]
     
-    # Mark the player's position with 'O'
+    # Mark the player's position with '⧆ '
     player_x, player_y = player_position
-    grid[player_y][player_x] = 'O'
+    grid[player_y][player_x] = '⧆ '
     
-    # Mark the treasure's position with 'O'
-    treasure_x, treasure_y = treasure_position
-    grid[treasure_y][treasure_x] = 'T'
+    # # Mark the treasure's position with 'T'
+    # treasure_x, treasure_y = treasure_position
+    # grid[treasure_y][treasure_x] = 'T'
     
     # Print the map
     for row in grid:
@@ -47,11 +47,7 @@ def light_torch(position, num_of_torches):
         draw_map(position)
         print(" ")
         
-        typewriter(
-            f"This cave is {GRID_WIDTH} paces wide from east to west "
-            f"and {GRID_HEIGHT} paces tall from north to south", 0.05
-        )
-        typewriter(f"Your current coordinates are: {position}.",0.05)
+        typewriter("The ⧆ icon indicates your position on the map",0.05)
         typewriter(f"The light has gone out. You have {num_of_torches} torches left",0.05)
         print(" ")
     else:
@@ -75,7 +71,7 @@ def display_commands():
 
 # Use to debug, disable this function during gameplay
 def debug():
-    print(f"The map is {GRID_WIDTH} paces wide and {GRID_HEIGHT} paces tall.")
+    print(f"The map size is {MAP_SIZE}.")
     print(f"You are at position {player_position}.")
     print(f"The treasure is at {treasure_position}.")
     print(f"The monster is at {monster.position}.")
@@ -98,7 +94,6 @@ def welcome_screen():
         print(" ")
         display_commands()
     
-
 # Defining the Monster class
 class Monster:
     def __init__(self, position):
@@ -127,6 +122,7 @@ class Monster:
 # Define the size of the map
 GRID_WIDTH = random.randint(4,10)
 GRID_HEIGHT = random.randint(4,10)
+MAP_SIZE = (GRID_WIDTH,GRID_HEIGHT)
 
 # Variables
 num_of_torches = 3
