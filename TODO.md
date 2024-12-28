@@ -16,7 +16,7 @@
 
 There are several duplicates of this block of code:
 ```Python
-monster.move()
+monster.move(player_position)
     if monster.check_if_caught(player_position):
         break  # End the game if the player was caught by the monster
 ```

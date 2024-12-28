@@ -201,7 +201,7 @@ while True:
             print(" ")
         
         # Move the monster and check if the player is caught
-        monster.move()
+        monster.move(player_position)
         if monster.check_if_caught(player_position):
             break  # End the game if the player was caught by the monster
 
@@ -219,12 +219,12 @@ while True:
             searched_positions.append(player_position)
             
             # Move the monster and check if the player is caught
-            monster.move()
+            monster.move(player_position)
             if monster.check_if_caught(player_position):
                 break  # End the game if the player was caught by the monster
     elif command == 'light a torch'.strip().lower():
         num_of_torches = light_torch(player_position, monster.position, num_of_torches)
-        monster.move()
+        monster.move(player_position)
         if monster.check_if_caught(player_position):
             break  # End the game if the player was caught by the monster
     elif command == 'help'.strip().lower():
