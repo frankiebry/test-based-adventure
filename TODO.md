@@ -1,6 +1,7 @@
 ### Todo
 - [ ] Make the monster beeline to the players last known position after the torch is lit? Unless it's 2 tiles away, then just chase like normal
 - [ ] Add hint for where the treasure is? Option to show icon (last torch maybe?)
+- [ ] Change look for treasure to "dig?"
 - [ ] Add inventory using a dictionary.
 - [ ] Add `if __name__ == '__main__':`
 - [ ] Add a "play again" option.
