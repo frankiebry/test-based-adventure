@@ -106,61 +106,64 @@ welcome_screen()
 # Main game loop
 while True:
     command = input("What do you want to do?: ").strip().lower()
-    
-    if command.startswith("go "):
-        direction = command[3:]  # Slicing syntax: Start at index 3 and begin extracting characters from the 4th character
-        if direction == "north" and player_position[1] > 0:
-            player_position = (player_position[0], player_position[1] - 1)
-            typewriter(f"You moved north.",0.05)
-            print(" ")
-        elif direction == "south" and player_position[1] < GRID_HEIGHT - 1:
-            player_position = (player_position[0], player_position[1] + 1)
-            typewriter(f"You moved south.",0.05)
-            print(" ")
-        elif direction == "east" and player_position[0] < GRID_WIDTH - 1:
-            player_position = (player_position[0] + 1, player_position[1])
-            typewriter(f"You moved east.",0.05)
-            print(" ")
-        elif direction == "west" and player_position[0] > 0:
-            player_position = (player_position[0] - 1, player_position[1])
-            typewriter(f"You moved west.",0.05)
-            print(" ")
-        else:
-            typewriter("The way is blocked.",0.05)
-            print(" ")
-        
-        # Move the monster and check if the player is caught
-        monster.move(player_position)
-        if monster.check_if_caught(player_position):
-            break  # End the game if the player was caught by the monster
+    monster_should_move = True  # Default to true; adjust for specific commands
 
-    elif command == 'look for treasure'.strip().lower():
-        if treasure_found(player_position, treasure_position):
-            typewriter("Congratulations! You found the treasure!",0.05)
-            print(" ")
-            typewriter("Game Over",0.05)
-            break
-        else:
-            typewriter("There is nothing here",0.05)
-            print(" ")
-            
-            # Add the current position to the searched positions list
-            searched_positions.append(player_position)
-            
-            # Move the monster and check if the player is caught
-            monster.move(player_position)
-            if monster.check_if_caught(player_position):
-                break  # End the game if the player was caught by the monster
-    elif command == 'light a torch'.strip().lower():
-        num_of_torches = light_torch(player_position, monster.position, num_of_torches)
+    match command:
+        case "go north":
+            if player_position[1] > 0:
+                player_position = (player_position[0], player_position[1] - 1)
+                typewriter("You moved north.", 0.05)
+            else:
+                typewriter("The way is blocked.", 0.05)
+
+        case "go south":
+            if player_position[1] < GRID_HEIGHT - 1:
+                player_position = (player_position[0], player_position[1] + 1)
+                typewriter("You moved south.", 0.05)
+            else:
+                typewriter("The way is blocked.", 0.05)
+
+        case "go east":
+            if player_position[0] < GRID_WIDTH - 1:
+                player_position = (player_position[0] + 1, player_position[1])
+                typewriter("You moved east.", 0.05)
+            else:
+                typewriter("The way is blocked.", 0.05)
+
+        case "go west":
+            if player_position[0] > 0:
+                player_position = (player_position[0] - 1, player_position[1])
+                typewriter("You moved west.", 0.05)
+            else:
+                typewriter("The way is blocked.", 0.05)
+
+        case "look for treasure":
+            if treasure_found(player_position, treasure_position):
+                typewriter("Congratulations! You found the treasure!", 0.05)
+                typewriter("Game Over", 0.05)
+                break
+            else:
+                typewriter("There is nothing here.", 0.05)
+                searched_positions.append(player_position)
+
+        case "light a torch":
+            num_of_torches = light_torch(player_position, monster.position, num_of_torches)
+
+        case "help":
+            display_commands()
+            monster_should_move = False  # Skip monster movement for help
+
+        case "cheat":
+            debug(player_position, monster.position, treasure_position)
+            monster_should_move = False  # Skip monster movement for cheat
+
+        case _:
+            typewriter(f"I don't know what '{command}' means.", 0.05)
+            monster_should_move = False  # Skip monster movement for invalid commands
+
+    # Move the monster only if required
+    if monster_should_move:
         monster.move(player_position)
         if monster.check_if_caught(player_position):
-            break  # End the game if the player was caught by the monster
-    elif command == 'help'.strip().lower():
-        print(" ")
-        display_commands()
-    elif command == 'cheat'.strip().lower():
-        debug(player_position, monster.position, treasure_position)
-    else:
-        typewriter(f"I don't know what '{command}' means.",0.05)
-        print(" ")
+            typewriter("The monster caught you! Game Over.", 0.05)
+            break
