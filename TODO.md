@@ -3,6 +3,8 @@
 - [ ] Add hint for where the treasure is? Option to show icon (last torch maybe?)
 - [ ] Change look for treasure to "dig?"
 - [ ] Add inventory using a dictionary.
+- [ ] Allow player to find more items
+- [ ] Warn player id monster is close
 - [ ] Add `if __name__ == '__main__':`
 - [ ] Add a "play again" option.
 - [ ] Separate debug into another file?
