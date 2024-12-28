@@ -23,12 +23,12 @@ def draw_map(player_position, monster_position, treasure_position, show_treasure
         
     # Mark the monster's position with 'M'
     monster_x, monster_y = monster_position
-    grid[monster_y][monster_x] = '\033[95mM \033[0m'
+    grid[monster_y][monster_x] = '\033[95mM \033[0m' # Bright Magenta
     
     # Conditionally mark the treasure's position with '⚿'
     if show_treasure:
         treasure_x, treasure_y = treasure_position
-        grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m'
+        grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m' # Bright Yellow
     
     # Print the map
     for row in grid:
