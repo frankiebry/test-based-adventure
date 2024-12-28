@@ -20,7 +20,7 @@ def treasure_found(player_position, treasure_position):
     return player_position == treasure_position
 
 # Draw the map
-def draw_map(player_position, monster_position):
+def draw_map(player_position, monster_position, treasure_position, show_treasure=False):
     # Create an empty grid of □'s
     grid = [['□ ' for j in range(GRID_WIDTH)] for i in range(GRID_HEIGHT)]
     
@@ -37,6 +37,11 @@ def draw_map(player_position, monster_position):
     monster_x, monster_y = monster_position
     grid[monster_y][monster_x] = 'M '
     
+    # Conditionally mark the treasure's position with '⚿'
+    if show_treasure:
+        treasure_x, treasure_y = treasure_position
+        grid[treasure_y][treasure_x] = '⚿ '
+    
     # Print the map
     for row in grid:
         print(''.join(row))
@@ -49,7 +54,7 @@ def light_torch(player_position, monster_position, num_of_torches):
         print(" ")
         
         # Display the map
-        draw_map(player_position, monster_position)
+        draw_map(player_position, monster_position, treasure_position)
         print(" ")
         
         typewriter("The ⧆ icon indicates your position on the map",0.05)
@@ -77,11 +82,9 @@ def display_commands():
     print("")
 
 # Use to debug, disable this function during gameplay
-def debug():
-    print(f"The map size is {MAP_SIZE}.")
-    print(f"You are at position {player_position}.")
+def debug(player_position, monster_position, treasure_position):
+    draw_map(player_position, monster_position, treasure_position, show_treasure=True)
     print(f"The treasure is at {treasure_position}.")
-    print(f"The monster is at {monster.position}.")
     print(" ")
 
 # Welcome Screen
@@ -105,8 +108,9 @@ def welcome_screen():
 class Monster:
     def __init__(self, position):
         self.position = position
+        self.turns_since_move = 0  # Track how many turns since the last move
 
-    def move(self):
+    def random_move(self):
         directions = ["north", "south", "east", "west"]
         direction = random.choice(directions)
         
@@ -119,12 +123,39 @@ class Monster:
         elif direction == "west" and self.position[0] > 0:
             self.position = (self.position[0] - 1, self.position[1])
 
+    def is_near_player(self, player_position):
+        # Manhattan distance: sum of the absolute differences in x and y
+        distance = abs(self.position[0] - player_position[0]) + abs(self.position[1] - player_position[1])
+        return distance <= 2  # Monster chases the player if within 2 steps
+
+    def chase_player(self, player_position):
+        # Chase the player by moving towards them
+        if self.position[0] < player_position[0]:
+            self.position = (self.position[0] + 1, self.position[1])
+        elif self.position[0] > player_position[0]:
+            self.position = (self.position[0] - 1, self.position[1])
+        elif self.position[1] < player_position[1]:
+            self.position = (self.position[0], self.position[1] + 1)
+        elif self.position[1] > player_position[1]:
+            self.position = (self.position[0], self.position[1] - 1)
+
     def check_if_caught(self, player_position):
         if self.position == player_position:
             typewriter(f"You were caught by the monster!",0.05)
             typewriter("Game Over!",0.05)
             return True
         return False
+    
+    def move(self, player_position):
+        # Monster only moves every two turns
+        self.turns_since_move += 1
+        if self.turns_since_move >= 2:
+            self.turns_since_move = 0
+            # If the monster is close to the player, it chases the player
+            if self.is_near_player(player_position):
+                self.chase_player(player_position)
+            else:
+                self.random_move()
 
 # Define the size of the map
 GRID_WIDTH = random.randint(4,10)
@@ -200,7 +231,7 @@ while True:
         print(" ")
         display_commands()
     elif command == 'cheat'.strip().lower():
-        debug()
+        debug(player_position, monster.position, treasure_position)
     else:
         typewriter(f"I don't know what '{command}' means.",0.05)
         print(" ")
