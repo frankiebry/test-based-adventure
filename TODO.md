@@ -7,6 +7,7 @@
 - [ ] Separate debug into another file?
 - [ ] Convert this entire game into a graphical version
 - [ ] Instead of treasure, player looks for key to escape dungeon?
+- [ ] Player and treasure should be separate classes as well?
 
 ### Issues
 - [ ] If the player types "go " + anything other than a cardinal direction, it just says "the way is blocked"
