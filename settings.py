@@ -8,4 +8,8 @@ MAP_SIZE = (GRID_WIDTH,GRID_HEIGHT)
 # Initial variable values
 DEFAULT_NUM_OF_TORCHES = 3
 DEFAULT_SEARCHED_POSITIONS = []
-DEFAULT_RANDOM_POS = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+
+# Default random positions
+DEFAULT_PLAYER_POS = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+DEFAULT_TREASURE_POS = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+DEFAULT_MONSTER_POS = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))

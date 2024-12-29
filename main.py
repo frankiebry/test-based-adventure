@@ -188,9 +188,9 @@ remaining_torches = DEFAULT_NUM_OF_TORCHES
 searched_positions = DEFAULT_SEARCHED_POSITIONS # List to track the locations where the player has searched for treasure
 
 # Starting positions for player, treasure, and monster with defaults defined in settings.py
-player_position = DEFAULT_RANDOM_POS
-treasure_position = DEFAULT_RANDOM_POS
-monster = Monster(DEFAULT_RANDOM_POS)
+player_position = DEFAULT_PLAYER_POS
+treasure_position = DEFAULT_TREASURE_POS
+monster = Monster(DEFAULT_MONSTER_POS)
 
 # Display the welcome screen at the start
 welcome_screen()
