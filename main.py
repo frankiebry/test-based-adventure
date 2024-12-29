@@ -124,10 +124,10 @@ player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEI
 treasure_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
 monster = Monster((random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1)))
 
-# Display welcome screen
+# Display welcome screen at the start
 welcome_screen()
 
-# Main game loop
+# Main game loop using match case for commands
 while True:
     print(" ")
     command = input("What do you want to do?: ").strip().lower()
