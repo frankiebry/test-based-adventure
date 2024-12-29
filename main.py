@@ -198,17 +198,18 @@ def reset_game():
     treasure_position = DEFAULT_TREASURE_POS
     monster = Monster(DEFAULT_MONSTER_POS)
 
+# # Initializing variables with defaults defined in settings.py
+# remaining_torches = DEFAULT_NUM_OF_TORCHES
+# searched_positions = DEFAULT_SEARCHED_POSITIONS # List to track the locations where the player has searched for treasure
 
-# Initializing variables with defaults defined in settings.py
-remaining_torches = DEFAULT_NUM_OF_TORCHES
-searched_positions = DEFAULT_SEARCHED_POSITIONS # List to track the locations where the player has searched for treasure
+# # Starting positions for player, treasure, and monster with defaults defined in settings.py
+# player_position = DEFAULT_PLAYER_POS
+# treasure_position = DEFAULT_TREASURE_POS
+# monster = Monster(DEFAULT_MONSTER_POS)
 
-# Starting positions for player, treasure, and monster with defaults defined in settings.py
-player_position = DEFAULT_PLAYER_POS
-treasure_position = DEFAULT_TREASURE_POS
-monster = Monster(DEFAULT_MONSTER_POS)
+reset_game()
 
-# Display the welcome screen at the start
+# Display the welcome screen at the start, outside the loop so it isn't shown on "Play again?"
 welcome_screen()
 
 # Main game loop
@@ -296,4 +297,5 @@ while True:
                 typewriter("Thank you for playing!", 0.05)
                 break
 
+print(" ")
 typewriter("GAME OVER", 0.5)

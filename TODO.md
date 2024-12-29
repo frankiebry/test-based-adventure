@@ -8,16 +8,23 @@
 - [ ] Convert this entire game into a graphical version
 - [ ] Player and treasure should be separate classes as well?
 - [ ] Allow player to type more commands that do the same thing (e.g. "go north", "move north", "go up", etc)
+- [ ] More immersive writing
+- [ ] More commands
 
 ### Ideas for changes/improvements
 - [ ] Instead of treasure, player looks for key to escape dungeon?
 - [ ] Monster chases player when torch is lit?
 - [ ] Player finds items that protect them from the monster?
+- [ ] If player digs, and treasure isn't there, chance to find more torches or other items
+- [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
 
 ### Bugs/Issues
+- [ ] <code style ="color: red">Spots already dug is not getting reset?!</code>
+- [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 
 ### Clean Code
+- [ ] Betters solution to making all variables global in reset_game() function
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
 - [ ] Comment everything that doesn't have a clear purpose?
 - [ ] Functions need to be better named and commented using docstrings?
