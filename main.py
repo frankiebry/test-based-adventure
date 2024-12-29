@@ -1,6 +1,7 @@
+import random
 from monster import Monster
 from typewriter import typewriter
-from settings import *
+# from settings import *
 
 # Function to check if the player has found the treasure
 def treasure_found(player_position, treasure_position):
@@ -189,24 +190,22 @@ def reset_game():
     """
     Resets all necessary variables to their initial state for a new game.
     """
-    global remaining_torches, searched_positions, player_position, treasure_position, monster
+    global remaining_torches, searched_positions, player_position, treasure_position, monster, GRID_WIDTH, GRID_HEIGHT
 
+    # Reset grid size (randomize each time)
+    GRID_WIDTH = random.randint(4, 10)
+    GRID_HEIGHT = random.randint(4, 10)
+    
     # Reset variables as defined in settings.py
-    remaining_torches = DEFAULT_NUM_OF_TORCHES
-    searched_positions = DEFAULT_SEARCHED_POSITIONS
-    player_position = DEFAULT_PLAYER_POS
-    treasure_position = DEFAULT_TREASURE_POS
-    monster = Monster(DEFAULT_MONSTER_POS)
+    remaining_torches = 3
+    searched_positions = []
+    player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+    treasure_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
+    
+    # Create a new monster with a random position within the new grid size
+    monster = Monster((random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1)),GRID_WIDTH,GRID_HEIGHT)
 
-# # Initializing variables with defaults defined in settings.py
-# remaining_torches = DEFAULT_NUM_OF_TORCHES
-# searched_positions = DEFAULT_SEARCHED_POSITIONS # List to track the locations where the player has searched for treasure
-
-# # Starting positions for player, treasure, and monster with defaults defined in settings.py
-# player_position = DEFAULT_PLAYER_POS
-# treasure_position = DEFAULT_TREASURE_POS
-# monster = Monster(DEFAULT_MONSTER_POS)
-
+# Initializing variables before the game starts
 reset_game()
 
 # Display the welcome screen at the start, outside the loop so it isn't shown on "Play again?"

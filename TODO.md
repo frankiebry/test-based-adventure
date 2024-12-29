@@ -19,8 +19,8 @@
 - [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
 
 ### Bugs/Issues
-- [ ] <code style ="color: red">Spots already dug is not getting reset?!</code>
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
+- [ ] I had to remove variables from settings.py and put them in main.py, and pass them to monster, in order for reset_game() to work properly. The statement that initializes the monster object (line 206) now looks inelegant... find out if and how settings.py can still be used... update settings.py dynamically?
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 
 ### Clean Code

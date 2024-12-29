@@ -1,8 +1,8 @@
 import random
-from settings import GRID_WIDTH, GRID_HEIGHT
+# from settings import GRID_WIDTH, GRID_HEIGHT
 
 class Monster:
-    def __init__(self, initial_position):
+    def __init__(self, initial_position, GRID_WIDTH, GRID_HEIGHT):
         """
         Initializes the Monster class with an initial position and the turn counter.
         
@@ -11,6 +11,8 @@ class Monster:
         """
         self.position = initial_position
         self.turns_since_move = 0  # Track how many turns since the last move
+        self.GRID_WIDTH = GRID_WIDTH
+        self.GRID_HEIGHT = GRID_HEIGHT
 
     def random_move(self):
         """
@@ -21,9 +23,9 @@ class Monster:
         
         if direction == "north" and self.position[1] > 0:
             self.position = (self.position[0], self.position[1] - 1)
-        elif direction == "south" and self.position[1] < GRID_HEIGHT - 1:
+        elif direction == "south" and self.position[1] < self.GRID_HEIGHT - 1:
             self.position = (self.position[0], self.position[1] + 1)
-        elif direction == "east" and self.position[0] < GRID_WIDTH - 1:
+        elif direction == "east" and self.position[0] < self.GRID_WIDTH - 1:
             self.position = (self.position[0] + 1, self.position[1])
         elif direction == "west" and self.position[0] > 0:
             self.position = (self.position[0] - 1, self.position[1])
