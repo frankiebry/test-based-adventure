@@ -35,11 +35,11 @@ def draw_map(player_position, monster_position, treasure_position, show_treasure
     # Mark the searched positions with 'X'
     for pos in searched_positions:
         x, y = pos
-        grid[y][x] = 'X '
+        grid[y][x] = '\033[96mX \033[0m' # ANSI escape codes provide color, 96 = Bright Cyan
     
     # Mark the player's position with '⧆'
     player_x, player_y = player_position
-    grid[player_y][player_x] = '\033[92m⧆ \033[0m' # ANSI escape codes provide color
+    grid[player_y][player_x] = '\033[92m⧆ \033[0m' # Bright Green
         
     # Mark the monster's position with 'M'
     monster_x, monster_y = monster_position
@@ -77,9 +77,9 @@ def light_torch(player_position, monster_position, remaining_torches):
         draw_map(player_position, monster_position, treasure_position)
         print(" ")
         
-        typewriter("⧆: Your current location.",0.05)
-        typewriter("X: Spots you've already dug.",0.05)
-        typewriter("M: You see an ominous shadowy figure standing there...",0.1)
+        typewriter("\033[92m⧆\033[0m: Your current location.",0.05)
+        typewriter("\033[96mX\033[0m: Spots you've already dug.",0.05)
+        typewriter("\033[95mM\033[0m: You see an ominous shadowy figure standing there...",0.1)
         if remaining_torches == 1:
             typewriter(f"The light has gone out. You have {remaining_torches} torch left",0.05)
         else:

@@ -1,7 +1,4 @@
 ### Todo
-- [ ] Make the monster beeline to the players last known position after the torch is lit? Unless it's 2 tiles away, then just chase like normal
-- [ ] Add hint for where the treasure is? Option to show icon (last torch maybe?)
-- [ ] Change look for treasure to "dig?"
 - [ ] Add inventory using a dictionary.
 - [ ] Allow player to find more items
 - [ ] Warn player when monster is close
@@ -9,23 +6,20 @@
 - [ ] Add a "play again" option.
 - [ ] Separate debug into another file?
 - [ ] Convert this entire game into a graphical version
-- [ ] Instead of treasure, player looks for key to escape dungeon?
 - [ ] Player and treasure should be separate classes as well?
 
-### Issues
-- [ ] Added metal detector function but it's not working properly (silent when 2 squares away, slow beeping at diagonal, rapid when next to treasure and silent when right on top of it?)
-- [ ] When there is one torch left it says "you have 1 torches left"
-- [ ] The last icon that is drawn on the map will cover any icon drawn before it.
-- [ ] Functions need to be better named and commented. Use docstrings
-- [ ] Comment everything that doesn't have a clear purpose.
-- [ ] Find a more elegant solution to the following ~
+### Ideas for changes
+- [ ] Instead of treasure, player looks for key to escape dungeon?
+- [ ] Monster chases player when torch is lit?
+- [ ] Player finds items that protect them from the monster?
 
-There are several duplicates of this block of code:
-```Python
-monster.move(player_position)
-    if monster.check_if_caught(player_position):
-        break  # End the game if the player was caught by the monster
-```
+### Issues
+- [ ] The last icon that is drawn on the map will cover any icon drawn before it.
+
+### Clean Code
+- [ ] Comment everything that doesn't have a clear purpose?
+- [ ] Functions need to be better named and commented using docstrings?
+- [ ] Find a more elegant solution to the following ~
 
 This statement is awkward...
 ```Python
