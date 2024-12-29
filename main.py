@@ -1,7 +1,6 @@
-import random
 from monster import Monster
 from typewriter import typewriter
-from settings import GRID_WIDTH, GRID_HEIGHT
+from settings import *
 
 # Function to check if the player has found the treasure
 def treasure_found(player_position, treasure_position):
@@ -78,10 +77,13 @@ def light_torch(player_position, monster_position, remaining_torches):
         draw_map(player_position, monster_position, treasure_position)
         print(" ")
         
-        typewriter("The ⧆ icon indicates your position on the map",0.05)
-        typewriter("The X icon indicates indicates spots you've already searched for treasure",0.05)
-        typewriter("You see an ominous shadowy figure where M is marked on the map...",0.05)
-        typewriter(f"The light has gone out. You have {remaining_torches} torches left",0.05)
+        typewriter("⧆: Your current location.",0.05)
+        typewriter("X: Spots you've already dug.",0.05)
+        typewriter("M: You see an ominous shadowy figure standing there...",0.1)
+        if remaining_torches == 1:
+            typewriter(f"The light has gone out. You have {remaining_torches} torch left",0.05)
+        else:
+            typewriter(f"The light has gone out. You have {remaining_torches} torches left",0.05)
         print(" ")
     else:
         typewriter("You don't have any torches left",0.05)
@@ -173,14 +175,22 @@ def welcome_screen():
         print(" ")
         display_commands()
 
-# Initializing variables
-remaining_torches = 3
-searched_positions = [] # List to track the locations where the player has searched for treasure
+# def play_again():
+#     response = input("Do you want to play again? (Y/N): ").strip().lower()
+#     if response == "y" or response == "yes":
+#         return True
+#     else:
+#         return False
 
-# Starting positions for player, treasure, and monster
-player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
-treasure_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
-monster = Monster((random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1)))
+
+# Initializing variables with defaults defined in settings.py
+remaining_torches = DEFAULT_NUM_OF_TORCHES
+searched_positions = DEFAULT_SEARCHED_POSITIONS # List to track the locations where the player has searched for treasure
+
+# Starting positions for player, treasure, and monster with defaults defined in settings.py
+player_position = DEFAULT_RANDOM_POS
+treasure_position = DEFAULT_RANDOM_POS
+monster = Monster(DEFAULT_RANDOM_POS)
 
 # Display the welcome screen at the start
 welcome_screen()
@@ -233,7 +243,6 @@ while True:
             remaining_torches = light_torch(player_position, monster.position, remaining_torches)
 
         case "sweep":
-            print(" ")
             sweep_for_treasure(player_position, treasure_position)
 
         case "help":
