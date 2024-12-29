@@ -1,7 +1,7 @@
 import random
 from monster import Monster
 from typewriter import typewriter
-# from settings import *
+from settings import *
 
 # Function to check if the player has found the treasure
 def treasure_found(player_position, treasure_position):
@@ -31,7 +31,7 @@ def draw_map(player_position, monster_position, treasure_position, show_treasure
     """
     
     # Create an empty grid of '□' representing unexplored areas
-    grid = [['□ ' for j in range(GRID_WIDTH)] for i in range(GRID_HEIGHT)]
+    grid = [['□ ' for j in range(settings.GRID_WIDTH)] for i in range(settings.GRID_HEIGHT)]
     
     # Mark the searched positions with 'X'
     for pos in searched_positions:
@@ -190,21 +190,17 @@ def reset_game():
     """
     Resets all necessary variables to their initial state for a new game.
     """
-    # This is really ugly... fix this
-    global remaining_torches, searched_positions, player_position, treasure_position, monster, GRID_WIDTH, GRID_HEIGHT
+    settings.reset()  # Reset all settings to initial state
+    global remaining_torches, searched_positions, player_position, treasure_position, monster
 
-    # Reset grid size (randomize each time)
-    GRID_WIDTH = random.randint(4, 10)
-    GRID_HEIGHT = random.randint(4, 10)
+    # Update variables from settings
+    remaining_torches = settings.DEFAULT_NUM_OF_TORCHES
+    searched_positions = settings.DEFAULT_SEARCHED_POSITIONS
+    player_position = settings.DEFAULT_PLAYER_POS
+    treasure_position = settings.DEFAULT_TREASURE_POS
     
-    # Reset variables as defined in settings.py
-    remaining_torches = 3
-    searched_positions = []
-    player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
-    treasure_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
-    
-    # Create a new monster with a random position within the new grid size... this doesn't look good though
-    monster = Monster((random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1)),GRID_WIDTH,GRID_HEIGHT)
+    # Initialize the monster with updated settings
+    monster = Monster(settings.DEFAULT_MONSTER_POS)
 
 # Initializing variables before the game starts
 reset_game()
@@ -227,14 +223,14 @@ while True:
                 typewriter("The way is blocked.", 0.05)
 
         case "go south":
-            if player_position[1] < GRID_HEIGHT - 1:
+            if player_position[1] < settings.GRID_HEIGHT - 1:
                 player_position = (player_position[0], player_position[1] + 1)
                 typewriter("You moved south.", 0.05)
             else:
                 typewriter("The way is blocked.", 0.05)
 
         case "go east":
-            if player_position[0] < GRID_WIDTH - 1:
+            if player_position[0] < settings.GRID_WIDTH - 1:
                 player_position = (player_position[0] + 1, player_position[1])
                 typewriter("You moved east.", 0.05)
             else:
