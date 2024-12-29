@@ -25,6 +25,7 @@
 ### Clean Code
 - [ ] Better solution to making all variables global in reset_game() function, it looks clunky
 - [ ] I had to remove variables from settings.py and put them in main.py, and pass them to the monster class, in order for reset_game() to work properly. The statement that initializes the monster object (line 206) now looks inelegant... find out if and how settings.py can still be used... update settings.py dynamically?
+- [ ] Create "randomize()" function that returns a tuple of random values? Then use this function anytime a position needs to be reset or randomize?
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
 - [ ] Comment everything that doesn't have a clear purpose?
 - [ ] Functions need to be better named and commented using docstrings?

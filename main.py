@@ -190,6 +190,7 @@ def reset_game():
     """
     Resets all necessary variables to their initial state for a new game.
     """
+    # This is really ugly... fix this
     global remaining_torches, searched_positions, player_position, treasure_position, monster, GRID_WIDTH, GRID_HEIGHT
 
     # Reset grid size (randomize each time)
@@ -202,7 +203,7 @@ def reset_game():
     player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
     treasure_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
     
-    # Create a new monster with a random position within the new grid size
+    # Create a new monster with a random position within the new grid size... this doesn't look good though
     monster = Monster((random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1)),GRID_WIDTH,GRID_HEIGHT)
 
 # Initializing variables before the game starts
