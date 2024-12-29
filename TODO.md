@@ -18,7 +18,6 @@
 - [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
 
 ### Bugs/Issues
-- [ ] The monster can only move every other turn... difficulty went from high to low. Too slow now? Or movement to random?
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 
