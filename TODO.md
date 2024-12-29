@@ -20,11 +20,11 @@
 
 ### Bugs/Issues
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
-- [ ] I had to remove variables from settings.py and put them in main.py, and pass them to monster, in order for reset_game() to work properly. The statement that initializes the monster object (line 206) now looks inelegant... find out if and how settings.py can still be used... update settings.py dynamically?
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 
 ### Clean Code
-- [ ] Betters solution to making all variables global in reset_game() function
+- [ ] Better solution to making all variables global in reset_game() function, it looks clunky
+- [ ] I had to remove variables from settings.py and put them in main.py, and pass them to the monster class, in order for reset_game() to work properly. The statement that initializes the monster object (line 206) now looks inelegant... find out if and how settings.py can still be used... update settings.py dynamically?
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
 - [ ] Comment everything that doesn't have a clear purpose?
 - [ ] Functions need to be better named and commented using docstrings?
