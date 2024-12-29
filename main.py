@@ -3,13 +3,34 @@ from monster import Monster
 from typewriter import typewriter
 from settings import GRID_WIDTH, GRID_HEIGHT
 
-# Check if player is in the same location as treasure
+# Function to check if the player has found the treasure
 def treasure_found(player_position, treasure_position):
+    """
+    Checks if the player's position matches the treasure's position.
+    
+    Args:
+    player_position (tuple): The (x, y) coordinates of the player.
+    treasure_position (tuple): The (x, y) coordinates of the treasure.
+    
+    Returns:
+    bool: True if the player has found the treasure, False otherwise.
+    """
+    
     return player_position == treasure_position
 
-# Draw the map
+# Function to draw the map showing the player's, monster's, and (if cheating) treasure's position
 def draw_map(player_position, monster_position, treasure_position, show_treasure=False):
-    # Create an empty grid of □'s
+    """
+    Draws the cave map with the player's, monster's, and optionally the treasure's position.
+    
+    Args:
+    player_position (tuple): The (x, y) coordinates of the player.
+    monster_position (tuple): The (x, y) coordinates of the monster.
+    treasure_position (tuple): The (x, y) coordinates of the treasure.
+    show_treasure (bool): Whether to show the treasure on the map or not.
+    """
+    
+    # Create an empty grid of '□' representing unexplored areas
     grid = [['□ ' for j in range(GRID_WIDTH)] for i in range(GRID_HEIGHT)]
     
     # Mark the searched positions with 'X'
@@ -25,7 +46,7 @@ def draw_map(player_position, monster_position, treasure_position, show_treasure
     monster_x, monster_y = monster_position
     grid[monster_y][monster_x] = '\033[95mM \033[0m' # Bright Magenta
     
-    # Conditionally mark the treasure's position with '⚿'
+    # Optionally, mark the treasure's position with '⚿'
     if show_treasure:
         treasure_x, treasure_y = treasure_position
         grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m' # Bright Yellow
@@ -34,13 +55,25 @@ def draw_map(player_position, monster_position, treasure_position, show_treasure
     for row in grid:
         print(''.join(row))
 
-# Player lights a torch and looks at the map
-def light_torch(player_position, monster_position, num_of_torches):
-    if num_of_torches > 0:
-        num_of_torches -= 1
+# Function for lighting a torch and displaying the map
+def light_torch(player_position, monster_position, remaining_torches):
+    """
+    Lights a torch and displays the map if the player has any torches left.
+    
+    Args:
+    player_position (tuple): The (x, y) coordinates of the player.
+    monster_position (tuple): The (x, y) coordinates of the monster.
+    remaining_torches (int): The number of torches the player has left.
+    
+    Returns:
+    int: The updated number of remaining torches.
+    """
+    
+    if remaining_torches > 0:
+        remaining_torches -= 1
         typewriter("You light a torch and check your map.",0.05)
         
-        # Display the map
+        # Display the map with the current positions
         print(" ")
         draw_map(player_position, monster_position, treasure_position)
         print(" ")
@@ -48,22 +81,30 @@ def light_torch(player_position, monster_position, num_of_torches):
         typewriter("The ⧆ icon indicates your position on the map",0.05)
         typewriter("The X icon indicates indicates spots you've already searched for treasure",0.05)
         typewriter("You see an ominous shadowy figure where M is marked on the map...",0.05)
-        typewriter(f"The light has gone out. You have {num_of_torches} torches left",0.05)
+        typewriter(f"The light has gone out. You have {remaining_torches} torches left",0.05)
         print(" ")
     else:
         typewriter("You don't have any torches left",0.05)
-    return num_of_torches
+    
+    return remaining_torches
 
+# Function to sweep for treasure using the metal detector
 def sweep_for_treasure(player_position, treasure_position):
     """
-    When user types the 'sweep' command, this function is called.
-    Manhattan distance from player to treasure is calculated
-    and player gets a message based on how far they are from the treasure
+    Uses the metal detector to check how far the player is from the treasure.
+    
+    Args:
+    player_position (tuple): The (x, y) coordinates of the player.
+    treasure_position (tuple): The (x, y) coordinates of the treasure.
     """
+    
     player_x, player_y = player_position
     treasure_x, treasure_y = treasure_position
+    
+    # Calculate Manhattan distance between player and treasure
     distance = abs(player_x - treasure_x) + abs(player_y - treasure_y)
     
+    # Provide feedback based on the distance
     if distance == 0:
         typewriter("The metal detector is going wild!!", 0.05)
     elif distance == 1:
@@ -73,8 +114,12 @@ def sweep_for_treasure(player_position, treasure_position):
     else:
         typewriter("The metal detector is silent.", 0.05)
 
-# Display the available commands
+# Function to display the available commands
 def display_commands():
+    """
+    Displays the list of available commands for the player.
+    """
+    
     print(" ")
     typewriter("*****************",0.02)
     typewriter("* Legal commands *",0.02)
@@ -90,14 +135,27 @@ def display_commands():
     typewriter("HELP: displays these commands again (the monster will not move)",0.02)
     print(" ")
 
-# Use to debug, disable this function during gameplay
+# Debugging function to view the map with treasure location
 def debug(player_position, monster_position, treasure_position):
+    """
+    Displays the map for debugging purposes, showing the treasure's location.
+    
+    Args:
+    player_position (tuple): The (x, y) coordinates of the player.
+    monster_position (tuple): The (x, y) coordinates of the monster.
+    treasure_position (tuple): The (x, y) coordinates of the treasure.
+    """
+    
     print(" ")
     draw_map(player_position, monster_position, treasure_position, show_treasure=True)
     print(" ")
 
-# Welcome Screen
+# Function to display the welcome screen and explain the game rules
 def welcome_screen():
+    """
+    Displays the welcome screen with the game rules and commands.
+    """
+    
     response = input(
         "Welcome to Frankie's text based adventure game. Have you played this game before? (Y/N): "
     ).strip().lower()
@@ -115,19 +173,19 @@ def welcome_screen():
         print(" ")
         display_commands()
 
-# Variables
-num_of_torches = 3
+# Initializing variables
+remaining_torches = 3
 searched_positions = [] # List to track the locations where the player has searched for treasure
 
-# Starting positions
+# Starting positions for player, treasure, and monster
 player_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
 treasure_position = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
 monster = Monster((random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1)))
 
-# Display welcome screen at the start
+# Display the welcome screen at the start
 welcome_screen()
 
-# Main game loop using match case for commands
+# Main game loop
 while True:
     print(" ")
     command = input("What do you want to do?: ").strip().lower()
@@ -172,7 +230,7 @@ while True:
                 searched_positions.append(player_position)
 
         case "light torch":
-            num_of_torches = light_torch(player_position, monster.position, num_of_torches)
+            remaining_torches = light_torch(player_position, monster.position, remaining_torches)
 
         case "sweep":
             print(" ")

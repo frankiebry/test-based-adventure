@@ -1,13 +1,21 @@
 import random
-from typewriter import typewriter
 from settings import GRID_WIDTH, GRID_HEIGHT
 
 class Monster:
-    def __init__(self, position):
-        self.position = position
+    def __init__(self, initial_position):
+        """
+        Initializes the Monster class with an initial position and the turn counter.
+        
+        Args:
+        initial_position (tuple): The (x, y) coordinates of the monster's starting position.
+        """
+        self.position = initial_position
         self.turns_since_move = 0  # Track how many turns since the last move
 
     def random_move(self):
+        """
+        Moves the monster in a random direction (north, south, east, west) if the move is within bounds.
+        """
         directions = ["north", "south", "east", "west"]
         direction = random.choice(directions)
         
@@ -21,12 +29,27 @@ class Monster:
             self.position = (self.position[0] - 1, self.position[1])
 
     def is_near_player(self, player_position):
-        """Manhattan distance: sum of the absolute differences in x and y"""
+        """
+        Checks if the monster is within 2 steps of the player using Manhattan distance.
+        
+        Args:
+        player_position (tuple): The (x, y) coordinates of the player's position.
+        
+        Returns:
+        bool: True if the monster is within 2 steps of the player, otherwise False.
+        """
+        # Manhattan distance: sum of absolute differences in x and y
         distance = abs(self.position[0] - player_position[0]) + abs(self.position[1] - player_position[1])
         return distance <= 2  # Monster chases the player if within 2 steps
 
     def chase_player(self, player_position):
-        """Chase the player by moving towards them"""
+        """
+        Moves the monster one step towards the player's position.
+        
+        Args:
+        player_position (tuple): The (x, y) coordinates of the player's position.
+        """
+        # Move towards the player horizontally or vertically
         if self.position[0] < player_position[0]:
             self.position = (self.position[0] + 1, self.position[1])
         elif self.position[0] > player_position[0]:
@@ -37,12 +60,27 @@ class Monster:
             self.position = (self.position[0], self.position[1] - 1)
 
     def check_if_caught(self, player_position):
+        """
+        Checks if the monster has caught the player by comparing their positions.
+        
+        Args:
+        player_position (tuple): The (x, y) coordinates of the player's position.
+        
+        Returns:
+        bool: True if the monster has caught the player, otherwise False.
+        """
         if self.position == player_position:
             return True
         return False
     
     def move(self, player_position):
-        """Monster only moves every two turns"""
+        """
+        Determines the monster's movement based on the turn count and its proximity to the player.
+        The monster moves every two turns. If it's near the player, it chases the player; otherwise, it moves randomly.
+        
+        Args:
+        player_position (tuple): The (x, y) coordinates of the player's position.
+        """
         self.turns_since_move += 1
         if self.turns_since_move >= 2:
             self.turns_since_move = 0
