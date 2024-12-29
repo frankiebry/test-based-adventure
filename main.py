@@ -175,12 +175,28 @@ def welcome_screen():
         print(" ")
         display_commands()
 
-# def play_again():
-#     response = input("Do you want to play again? (Y/N): ").strip().lower()
-#     if response == "y" or response == "yes":
-#         return True
-#     else:
-#         return False
+def play_again():
+    """
+    Asks the player if they want to play again and returns True for yes, False for no.
+    """
+    response = input("Do you want to play again? (Y/N): ").strip().lower()
+    if response == "y" or response == "yes":
+        return True
+    else:
+        return False
+    
+def reset_game():
+    """
+    Resets all necessary variables to their initial state for a new game.
+    """
+    global remaining_torches, searched_positions, player_position, treasure_position, monster
+
+    # Reset variables as defined in settings.py
+    remaining_torches = DEFAULT_NUM_OF_TORCHES
+    searched_positions = DEFAULT_SEARCHED_POSITIONS
+    player_position = DEFAULT_PLAYER_POS
+    treasure_position = DEFAULT_TREASURE_POS
+    monster = Monster(DEFAULT_MONSTER_POS)
 
 
 # Initializing variables with defaults defined in settings.py
@@ -234,7 +250,13 @@ while True:
             if treasure_found(player_position, treasure_position):
                 typewriter("Congratulations! You found the treasure!", 0.05)
                 print(" ")
-                break
+                # Ask if the player wants to play again
+                if play_again():
+                    reset_game()  # Reset the game state
+                    continue  # Restart the game loop
+                else:
+                    typewriter("Thank you for playing!", 0.05)
+                    break
             else:
                 typewriter("There is nothing here.", 0.05)
                 searched_positions.append(player_position)
@@ -266,6 +288,12 @@ while True:
             print(" ")
             typewriter(f"You were caught by the monster!",0.05)
             print(" ")
-            break
+            # Ask if the player wants to play again
+            if play_again():
+                reset_game()  # Reset the game state
+                continue  # Restart the game loop
+            else:
+                typewriter("Thank you for playing!", 0.05)
+                break
 
 typewriter("GAME OVER", 0.5)

@@ -27,3 +27,14 @@ This statement is awkward...
 ```Python
 num_of_torches = light_torch(player_position, monster.position, num_of_torches)
 ```
+
+Also this code block is used twice...
+```Python
+# Ask if the player wants to play again
+if play_again():
+    reset_game()  # Reset the game state
+    continue  # Restart the game loop
+else:
+    typewriter("Thank you for playing!", 0.05)
+    break
+```
