@@ -4,6 +4,7 @@ from settings import settings
 from utils import calculate_distance
 from commands import commands_dict 
 from inventory import inventory
+import random
 
 # Our main game class
 class Game:
@@ -88,6 +89,24 @@ class Game:
                 typewriter("The metal detector is slowly beeping.", 0.05)
             else:
                 typewriter("The metal detector is silent.", 0.05)
+
+    # TODO Can this be written more elegantly?
+    def dig(self):
+        """Handle the player digging at their current position."""
+        if self.player_position in self.searched_positions: # Check if the player has already dug here
+            typewriter("You have already dug here.", 0.05)
+        elif self.player_position == self.key_position: # Check if the player has found the key
+            self.searched_positions.append(self.player_position) # Mark the spot as searched
+            inventory.add_item("key", 1)  # Add the key to the inventory
+            self.key_position = None  # Remove the key from the map
+            typewriter("You found the \033[93mkey\033[0m!", 0.05)
+            print(' ')
+        # Generate a random number between 0 and 1
+        elif random.random() < 0.1: # 10% chance
+            inventory.add("torch", 1) # Add a torch to the inventory
+            typewriter("You found a torch!", 0.05)
+        else:
+            typewriter("There is nothing here.", 0.05)
 
     def display_commands(self):
         """Display the list of available commands to the player."""
@@ -180,14 +199,7 @@ class Game:
 
                 # TODO put this in it's own dig function?
                 case _ if command in commands_dict["dig"]:
-                    if self.player_position == self.key_position:
-                        inventory.add_item("key", 1)  # Add the key to the inventory
-                        self.key_position = None  # Remove the key from the map
-                        typewriter("You found the \033[93mkey\033[0m!", 0.05)
-                        print(' ')
-                    else:
-                        typewriter("There is nothing here.", 0.05)
-                        self.searched_positions.append(self.player_position) # Mark the spot as searched
+                    self.dig()
 
                 case _ if command in commands_dict["inventory"]:
                     inventory.show_inventory()
