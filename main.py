@@ -39,8 +39,8 @@ class Game:
         monster_x, monster_y = self.monster.position
         grid[monster_y][monster_x] = '\033[95mM \033[0m' # Bright Magenta
         if show_key:
-            treasure_x, treasure_y = self.treasure_position
-            grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m' # Bright Yellow
+            key_x, key_y = self.key_position
+            grid[key_y][key_x] = '\033[93m⚿ \033[0m' # Bright Yellow
         for row in grid: # Print the map row by row
             print(''.join(row))
 
@@ -65,7 +65,7 @@ class Game:
 
     def use_metal_detector(self):
         """Use the metal detector to get a hint about the key's location."""
-        distance = calculate_distance(self.player_position, self.treasure_position)
+        distance = calculate_distance(self.player_position, self.key_position)
         if distance == 0:
             typewriter("The metal detector is going wild!!", 0.05)
         elif distance == 1:
@@ -88,7 +88,7 @@ class Game:
         typewriter("MOVE WEST", 0.02)
         typewriter("DIG HERE", 0.02)
         typewriter("USE A TORCH: check your map", 0.02)
-        typewriter("SWEEP FOR key: use metal detector", 0.02)
+        typewriter("SWEEP FOR KEY: use metal detector", 0.02)
         print(' ')
 
     def debug(self):
