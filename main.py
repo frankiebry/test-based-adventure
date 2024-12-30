@@ -207,6 +207,7 @@ class Game:
         print(" ")
         typewriter("GAME OVER", 0.5)
 
+# Run the game if this script is executed
 if __name__ == '__main__':
     game = Game()
     game.main_loop()
