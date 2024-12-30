@@ -1,21 +1,19 @@
 ### Todo
+- [ ] More immersive writing
+- [ ] Allow player to type more commands that do the same thing (e.g. "go north", "move north", "go up", etc)
+
+### Ideas for changes/improvements
 - [ ] Add inventory using a dictionary.
 - [ ] Allow player to find more items
 - [ ] Warn player when monster is close
-- [ ] Add `if __name__ == '__main__':`
-- [ ] Separate debug into another file?
-- [ ] Convert this entire game into a graphical version
-- [ ] More immersive writing
 - [ ] More commands
-- [ ] Allow player to type more commands that do the same thing (e.g. "go north", "move north", "go up", etc)
-- [ ] Add mor color to text
-
-### Ideas for changes/improvements
 - [ ] Instead of treasure, player looks for key to escape dungeon?
 - [ ] Monster chases player when torch is lit?
 - [ ] Player finds items that protect them from the monster?
 - [ ] If player digs, and treasure isn't there, chance to find more torches or other items
 - [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
+- [ ] Convert this entire game into a graphical version
+- [ ] Add more color to text
 
 ### Bugs/Issues
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
