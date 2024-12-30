@@ -155,7 +155,7 @@ class Game:
                         typewriter("The way is blocked.", 0.05)
 
                 case "dig" | "dig for treasure" | "dig here" | "look for treasure" | \
-                    "look for treasure here" | "search" | "search here" | "search for treasure" | \:
+                    "look for treasure here" | "search" | "search here" | "search for treasure":
                     if self.treasure_found():
                         typewriter("Congratulations! You found the treasure!", 0.05)
                         print(" ")
