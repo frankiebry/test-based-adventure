@@ -31,9 +31,15 @@ class Inventory:
         """Check if the player has a specific item."""
         return self.items.get(item, 0) > 0
 
-    def __str__(self):
-        """Return a string representation of the inventory."""
-        return f"Inventory: {self.items}"
+    # TODO Pluralize item names if the quantity is greater than 1
+    def show_inventory(self):
+        """Display the contents of the player's inventory."""
+        if not self.items:
+            print("Your inventory is empty.")
+        else:
+            print("You check the contents of your backpack...")
+            for item, quantity in self.items.items():
+                print(f"- {item.capitalize()}: {quantity}")
     
 # Create a single instance of the Inventory class
 inventory = Inventory()

@@ -1,3 +1,5 @@
+# TODO strip "?" from possible commands
+
 commands_dict = {
     "up": [
         "go north", "move north", "go up", "move up"
@@ -14,6 +16,11 @@ commands_dict = {
     "dig": [
         "dig", "dig for treasure", "dig here", "look for treasure", 
         "look for treasure here", "search", "search here", "search for treasure"
+    ],
+    "inventory": [
+        "check inventory", "show inventory", "view inventory", "view my inventory",
+        "what do i have", "what do i have?", "what's in my inventory", "what's in my inventory?"
+        "check my items", "check my items?", "check items", "check items?"
     ],
     "torch": [
         "light torch", "light a torch", "use torch", "use a torch", "look around", "light my torch",

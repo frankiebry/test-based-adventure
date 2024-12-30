@@ -179,12 +179,16 @@ class Game:
                         typewriter("There is nothing here.", 0.05)
                         self.searched_positions.append(self.player_position) # Mark the spot as searched
 
+                case _ if command in commands_dict["inventory"]:
+                    inventory.show_inventory()
+
                 case _ if command in commands_dict["torch"]:
                     self.light_torch()
 
                 case _ if command in commands_dict["sweep"]:
                     self.use_metal_detector()
 
+                # Handle all this in a function?
                 case _ if command in commands_dict["unlock"]:
                     if self.player_position == self.exit_position: # Check if the player is at the exit
                         if inventory.has_item("key"): # Check if the player has the key
