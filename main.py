@@ -104,15 +104,16 @@ class Game:
         ).strip().lower()
         if response in ['n', 'no']:
             print(' ')
-            typewriter("Here are the rules..", 0.05)
+            typewriter('Here are the rules..', 0.05)
             print(' ')
-            typewriter("You are in a dark cave. Each turn you can do one of the following:", 0.05)
-            typewriter("* Move north, south, east or west", 0.05)
-            typewriter("* Use your metal detector to find the key.", 0.05)
-            typewriter("* Dig to find the key. You may also find helpful items or treasure.", 0.05)
-            typewriter("* Light a torch to check your map. You only get 3 torches.", 0.05)
-            typewriter("Beware, there is a monster in the cave with you. Each turn the monster moves one pace.", 0.05)
-            typewriter("The game will end if you find the key... or the monster catches you. Good luck!", 0.05)
+            typewriter('You are in a dark cave and need to find the key to the exit.', 0.05)
+            typewriter('Each turn you can do one of the following:', 0.05)
+            typewriter('* Move north, south, east or west', 0.05)
+            typewriter('* Use your metal detector to find the key.', 0.05)
+            typewriter('* Dig to find the key. You may also find helpful items or treasure.', 0.05)
+            typewriter('* Light a torch to check your map. You only get 3 torches.', 0.05)
+            typewriter('Beware, there is a monster in the cave with you. Each turn the monster moves one pace.', 0.05)
+            typewriter('The game will end if you find the key... or the monster catches you. Good luck!', 0.05)
 
     def play_again(self):
         """Prompt the player to decide whether to play again."""
