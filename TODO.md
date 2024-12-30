@@ -5,9 +5,11 @@
 ### Ideas for changes/improvements
 - [ ] Use colorized text to highlight keywords.
 - [ ] Add inventory using a dictionary.
-- [ ] Allow player to find more items
+- [ ] Add combat and HP (change "caught" to "encounter")
+- [ ] Allow player to find more items, helpful items like torches and score items like gems
+- [ ] Add high score
 - [ ] Warn player when monster is close
-- [ ] Instead of treasure, player looks for key to escape dungeon?
+- [ ] Instead of treasure, player looks for key to escape dungeon? Add Exit and make visible on map
 - [ ] Monster chases player when torch is lit?
 - [ ] Player finds items that protect them from the monster?
 - [ ] If player digs, and treasure isn't there, chance to find more torches or other items
