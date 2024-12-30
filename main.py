@@ -16,19 +16,19 @@ class Game:
         self.remaining_torches = settings.DEFAULT_NUM_OF_TORCHES
         self.searched_positions = settings.DEFAULT_SEARCHED_POSITIONS
         self.player_position = settings.DEFAULT_PLAYER_POS
-        self.treasure_position = settings.DEFAULT_TREASURE_POS
+        self.key_position = settings.DEFAULT_KEY_POS
         self.monster = Monster(settings.DEFAULT_MONSTER_POS)
 
-    def treasure_found(self):
-        """Check if the player is at the treasure's position."""
-        return self.player_position == self.treasure_position
+    def key_found(self):
+        """Check if the player is at the key's position."""
+        return self.player_position == self.key_position
 
-    def draw_map(self, show_treasure=False):
+    def draw_map(self, show_key=False):
         """
-        Draw the game map with the player, monster, and optionally the treasure.
+        Draw the game map with the player, monster, and optionally the key.
 
         Args:
-            show_treasure (bool): Whether to display the treasure on the map.
+            show_key (bool): Whether to display the key on the map.
         """
         grid = [['□ ' for _ in range(settings.GRID_WIDTH)] for _ in range(settings.GRID_HEIGHT)]
         for pos in self.searched_positions: # Mark the spots the player has already dug
@@ -38,7 +38,7 @@ class Game:
         grid[player_y][player_x] = '\033[92m⧆ \033[0m' # Bright Green
         monster_x, monster_y = self.monster.position
         grid[monster_y][monster_x] = '\033[95mM \033[0m' # Bright Magenta
-        if show_treasure:
+        if show_key:
             treasure_x, treasure_y = self.treasure_position
             grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m' # Bright Yellow
         for row in grid: # Print the map row by row
@@ -63,8 +63,8 @@ class Game:
         else:
             typewriter("You don't have any torches left", 0.05)
 
-    def sweep_for_treasure(self):
-        """Use the metal detector to get a hint about the treasure's location."""
+    def use_metal_detector(self):
+        """Use the metal detector to get a hint about the key's location."""
         distance = calculate_distance(self.player_position, self.treasure_position)
         if distance == 0:
             typewriter("The metal detector is going wild!!", 0.05)
@@ -88,13 +88,13 @@ class Game:
         typewriter("MOVE WEST", 0.02)
         typewriter("DIG HERE", 0.02)
         typewriter("USE A TORCH: check your map", 0.02)
-        typewriter("SWEEP FOR TREASURE: use metal detector", 0.02)
+        typewriter("SWEEP FOR key: use metal detector", 0.02)
         print(' ')
 
     def debug(self):
-        """Display the full map, including the treasure's location (cheat/debug mode)."""
+        """Display the full map, including the key's location (cheat/debug mode)."""
         print(' ')
-        self.draw_map(show_treasure=True) # Show the treasure on the map
+        self.draw_map(show_key=True) # Show the key on the map
         print(' ')
 
     def welcome_screen(self):
@@ -108,11 +108,11 @@ class Game:
             print(' ')
             typewriter("You are in a dark cave. Each turn you can use a command to do one of the following.", 0.05)
             typewriter("* Move north, south, east or west", 0.05)
-            typewriter("* Use your metal detector to sweep for treasure.", 0.05)
-            typewriter("* Dig for treasure.", 0.05)
+            typewriter("* Use your metal detector to find the key.", 0.05)
+            typewriter("* Dig to find the key. You may also find helpful items or treasure.", 0.05)
             typewriter("* Light a torch to check your map. You only get 3 torches.", 0.05)
             typewriter("Beware, there is a monster in the cave with you. Each turn the monster moves one pace.", 0.05)
-            typewriter("The game will end if you find the treasure... or the monster catches you. Good luck!", 0.05)
+            typewriter("The game will end if you find the key... or the monster catches you. Good luck!", 0.05)
 
     def play_again(self):
         """Prompt the player to decide whether to play again."""
@@ -158,8 +158,8 @@ class Game:
                         typewriter("The way is blocked.", 0.05)
 
                 case _ if command in commands_dict["dig"]:
-                    if self.treasure_found():
-                        typewriter("Congratulations! You found the treasure!", 0.05)
+                    if self.key_found():
+                        typewriter("Congratulations! You found the key!", 0.05)
                         print(' ')
                         if self.play_again():
                             self.reset_game()
@@ -175,7 +175,7 @@ class Game:
                     self.light_torch()
 
                 case _ if command in commands_dict["sweep"]:
-                    self.sweep_for_treasure()
+                    self.use_metal_detector()
 
                 case _ if command in commands_dict["help"]:
                     self.display_commands()

@@ -14,7 +14,8 @@ class Settings:
         self.DEFAULT_NUM_OF_TORCHES = 3
         self.DEFAULT_SEARCHED_POSITIONS = []
         self.DEFAULT_PLAYER_POS = self.randomize_position()
-        self.DEFAULT_TREASURE_POS = self.randomize_position()
+        self.DEFAULT_KEY_POS = self.randomize_position()
+        self.DEFAULT_EXIT_POS = self.randomize_position()
         self.DEFAULT_MONSTER_POS = self.randomize_position()
 
     def randomize_position(self):
