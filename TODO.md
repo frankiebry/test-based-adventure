@@ -18,6 +18,7 @@
 - [ ] Add more color to text
 
 ### Bugs/Issues
+- [ ] The alt codes for the icons on the map are different sizes and make the map look wonky. Find a set that are all the same dimensions
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
 

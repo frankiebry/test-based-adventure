@@ -17,6 +17,7 @@ class Game:
         self.searched_positions = settings.DEFAULT_SEARCHED_POSITIONS
         self.player_position = settings.DEFAULT_PLAYER_POS
         self.key_position = settings.DEFAULT_KEY_POS
+        self.exit_position = settings.DEFAULT_EXIT_POS
         self.monster = Monster(settings.DEFAULT_MONSTER_POS)
 
     def key_found(self):
@@ -30,14 +31,24 @@ class Game:
         Args:
             show_key (bool): Whether to display the key on the map.
         """
-        grid = [['□ ' for _ in range(settings.GRID_WIDTH)] for _ in range(settings.GRID_HEIGHT)]
-        for pos in self.searched_positions: # Mark the spots the player has already dug
+        grid = [['⬚ ' for _ in range(settings.GRID_WIDTH)] for _ in range(settings.GRID_HEIGHT)]
+        
+        # Mark the spots the player has already dug on the map
+        for pos in self.searched_positions: 
             x, y = pos
-            grid[y][x] = '\033[96mX \033[0m' # Use ANSI escape codes for colored text - Bright Cyan
+            grid[y][x] = '\033[96m⛝ \033[0m' # Use ANSI escape codes for colored text - Bright Cyan
+        
+        # Draw the player location on the map
         player_x, player_y = self.player_position
-        grid[player_y][player_x] = '\033[92m⧆ \033[0m' # Bright Green
+        grid[player_y][player_x] = '\033[92m♙ \033[0m' # Bright Green
+        
+        # Draw the monster location on the map
         monster_x, monster_y = self.monster.position
-        grid[monster_y][monster_x] = '\033[95mM \033[0m' # Bright Magenta
+        grid[monster_y][monster_x] = '\033[91m♞ \033[0m' # Bright Red
+        
+        exit_x, exit_y = self.exit_position
+        grid[exit_y][exit_x] = '⬕ ' # Default White
+        
         if show_key:
             key_x, key_y = self.key_position
             grid[key_y][key_x] = '\033[93m⚿ \033[0m' # Bright Yellow
