@@ -20,9 +20,8 @@
 - [ ] The last icon that is drawn on the map will cover any icon drawn before it.
 
 ### Clean Code
-- [ ] Better solution to making all variables global in reset_game() function
-- [ ] Find a better solution to the way reset_game() and settings.reset() are used to initialize and reset variables
-- [ ] Repeated distance calculations (e.g., in sweep_for_treasure and Monster.is_near_player) could be centralized.
+- [ ] Find a better solution to the way reset_game() and settings.reset() are used to initialize and reset variables.
+It seems kind of redundant?
 - [ ] Create "randomize()" function that returns a tuple of random values? Then use this function anytime a position needs to be reset or randomize?
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
 - [ ] Comment everything that doesn't have a clear purpose or needs to be explained?

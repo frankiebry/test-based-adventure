@@ -1,5 +1,6 @@
 import random
-from settings import *
+from settings import settings
+from utils import calculate_distance
 
 class Monster:
     def __init__(self, initial_position):
@@ -39,7 +40,7 @@ class Monster:
         bool: True if the monster is within 2 steps of the player, otherwise False.
         """
         # Manhattan distance: sum of absolute differences in x and y
-        distance = abs(self.position[0] - player_position[0]) + abs(self.position[1] - player_position[1])
+        distance = calculate_distance(self.position, player_position)
         return distance <= 2  # Monster chases the player if within 2 steps
 
     def chase_player(self, player_position):

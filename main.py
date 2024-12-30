@@ -1,6 +1,7 @@
 from monster import Monster
 from typewriter import typewriter
 from settings import settings
+from utils import calculate_distance
 
 class Game:
     def __init__(self):
@@ -62,9 +63,10 @@ class Game:
 
     def sweep_for_treasure(self):
         """Use the metal detector to get a hint about the treasure's location."""
-        player_x, player_y = self.player_position
-        treasure_x, treasure_y = self.treasure_position
-        distance = abs(player_x - treasure_x) + abs(player_y - treasure_y) # Manhattan distance
+        distance = calculate_distance(self.player_position, self.treasure_position)
+        # player_x, player_y = self.player_position
+        # treasure_x, treasure_y = self.treasure_position
+        # distance = abs(player_x - treasure_x) + abs(player_y - treasure_y) # Manhattan distance
         if distance == 0:
             typewriter("The metal detector is going wild!!", 0.05)
         elif distance == 1:
