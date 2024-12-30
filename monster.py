@@ -10,7 +10,7 @@ class Monster:
         initial_position (tuple): The (x, y) coordinates of the monster's starting position.
         """
         self.position = initial_position
-        self.turns_since_move = 0  # Track how many turns since the last move
+        self.turns_since_move = 0  # Track how many turns since the last move for the cooldown timer
 
     def random_move(self):
         """

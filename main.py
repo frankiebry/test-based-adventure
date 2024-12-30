@@ -1,14 +1,15 @@
-import random
 from monster import Monster
 from typewriter import typewriter
 from settings import settings
 
 class Game:
     def __init__(self):
-        self.reset_game()
+        """Initialize the game by resetting to default settings."""
+        self.reset_game() # Reset the game to its initial state with default settings
 
     def reset_game(self):
-        settings.reset()
+        """Reset the game to its initial state with default settings."""
+        settings.reset() # Reset the settings to their default values
         self.remaining_torches = settings.DEFAULT_NUM_OF_TORCHES
         self.searched_positions = settings.DEFAULT_SEARCHED_POSITIONS
         self.player_position = settings.DEFAULT_PLAYER_POS
@@ -16,25 +17,33 @@ class Game:
         self.monster = Monster(settings.DEFAULT_MONSTER_POS)
 
     def treasure_found(self):
+        """Check if the player is at the treasure's position."""
         return self.player_position == self.treasure_position
 
     def draw_map(self, show_treasure=False):
+        """
+        Draw the game map with the player, monster, and optionally the treasure.
+
+        Args:
+            show_treasure (bool): Whether to display the treasure on the map.
+        """
         grid = [['□ ' for _ in range(settings.GRID_WIDTH)] for _ in range(settings.GRID_HEIGHT)]
-        for pos in self.searched_positions:
+        for pos in self.searched_positions: # Mark the spots the player has already dug
             x, y = pos
-            grid[y][x] = '\033[96mX \033[0m'
+            grid[y][x] = '\033[96mX \033[0m' # Use ANSI escape codes for colored text - Bright Cyan
         player_x, player_y = self.player_position
-        grid[player_y][player_x] = '\033[92m⧆ \033[0m'
+        grid[player_y][player_x] = '\033[92m⧆ \033[0m' # Bright Green
         monster_x, monster_y = self.monster.position
-        grid[monster_y][monster_x] = '\033[95mM \033[0m'
+        grid[monster_y][monster_x] = '\033[95mM \033[0m' # Bright Magenta
         if show_treasure:
             treasure_x, treasure_y = self.treasure_position
-            grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m'
-        for row in grid:
+            grid[treasure_y][treasure_x] = '\033[93m⚿ \033[0m' # Bright Yellow
+        for row in grid: # Print the map row by row
             print(''.join(row))
 
     def light_torch(self):
-        if self.remaining_torches > 0:
+        """Use a torch to reveal the map and display helpful information."""
+        if self.remaining_torches > 0: # Check if the player has any torches left
             self.remaining_torches -= 1
             typewriter("You light a torch and check your map.", 0.05)
             print(" ")
@@ -43,7 +52,7 @@ class Game:
             typewriter("\033[92m⧆\033[0m: Your current location.", 0.05)
             typewriter("\033[96mX\033[0m: Spots you've already dug.", 0.05)
             typewriter("\033[95mM\033[0m: You see an ominous shadowy figure standing there...", 0.1)
-            if self.remaining_torches == 1:
+            if self.remaining_torches == 1: # Handle singular vs. plural in the message.
                 typewriter(f"The light has gone out. You have {self.remaining_torches} torch left", 0.05)
             else:
                 typewriter(f"The light has gone out. You have {self.remaining_torches} torches left", 0.05)
@@ -52,9 +61,10 @@ class Game:
             typewriter("You don't have any torches left", 0.05)
 
     def sweep_for_treasure(self):
+        """Use the metal detector to get a hint about the treasure's location."""
         player_x, player_y = self.player_position
         treasure_x, treasure_y = self.treasure_position
-        distance = abs(player_x - treasure_x) + abs(player_y - treasure_y)
+        distance = abs(player_x - treasure_x) + abs(player_y - treasure_y) # Manhattan distance
         if distance == 0:
             typewriter("The metal detector is going wild!!", 0.05)
         elif distance == 1:
@@ -65,6 +75,7 @@ class Game:
             typewriter("The metal detector is silent.", 0.05)
 
     def display_commands(self):
+        """Display the list of available commands to the player."""
         print(" ")
         typewriter("*****************", 0.02)
         typewriter("* Legal commands *", 0.02)
@@ -81,11 +92,13 @@ class Game:
         print(" ")
 
     def debug(self):
+        """Display the full map, including the treasure's location (cheat/debug mode)."""
         print(" ")
-        self.draw_map(show_treasure=True)
+        self.draw_map(show_treasure=True) # Show the treasure on the map
         print(" ")
 
     def welcome_screen(self):
+        """Display the welcome screen and explain the rules for first timers."""
         response = input(
             "Welcome to Frankie's text based adventure game. Have you played this game before? (Y/N): "
         ).strip().lower()
@@ -103,15 +116,17 @@ class Game:
             self.display_commands()
 
     def play_again(self):
+        """Prompt the player to decide whether to play again."""
         response = input("Do you want to play again? (Y/N): ").strip().lower()
         return response in ["y", "yes"]
 
     def main_loop(self):
+        """Run the main game loop, handling player commands and game logic."""
         self.welcome_screen()
         while True:
             print(" ")
             command = input("What do you want to do?: ").strip().lower()
-            monster_should_move = True
+            monster_should_move = True # Assume the monster will move on each turn by default
 
             match command:
                 case "go north":
@@ -154,7 +169,7 @@ class Game:
                             break
                     else:
                         typewriter("There is nothing here.", 0.05)
-                        self.searched_positions.append(self.player_position)
+                        self.searched_positions.append(self.player_position) # Mark the spot as searched
 
                 case "light torch":
                     self.light_torch()
