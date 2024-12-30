@@ -6,7 +6,6 @@
 - [ ] Add inventory using a dictionary.
 - [ ] Allow player to find more items
 - [ ] Warn player when monster is close
-- [ ] Find a more efficient way to handle all the possible commands
 - [ ] Instead of treasure, player looks for key to escape dungeon?
 - [ ] Monster chases player when torch is lit?
 - [ ] Player finds items that protect them from the monster?

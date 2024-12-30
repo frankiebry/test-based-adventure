@@ -1,5 +1,5 @@
 from monster import Monster # class to represent the monster in the game
-from typewriter import typewriter, TypewriterError # function to simulate typing text and custom error
+from typewriter import typewriter # function to simulate typing text
 from settings import settings # where all variables are initialized and reset
 from utils import calculate_distance # formula to calculate distance between two points
 from commands import commands_dict # import dictionary of all possible commands
