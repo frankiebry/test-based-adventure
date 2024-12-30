@@ -2,6 +2,7 @@
 - [ ] More immersive writing
 
 ### Ideas for changes/improvements
+- [ ] Add option to move 2 or 3 paces at once?
 - [ ] Add combat and HP (change "caught" to "encounter")
 - [ ] If player digs, and the key isn't there, chance to find more torches or other items
 - [ ] Allow player to find more items, helpful items like torches and score items like gems
