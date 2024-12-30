@@ -192,6 +192,7 @@ class Game:
                 case _ if command in commands_dict["unlock"]:
                     if self.player_position == self.exit_position: # Check if the player is at the exit
                         if inventory.has_item("key"): # Check if the player has the key
+                            # TODO inventory.use_item to remove key from inventory
                             typewriter("You unlock the door and escape!", 0.05)
                             print(' ')
                             if self.play_again():
