@@ -1,24 +1,22 @@
 ### Todo
 - [ ] More immersive writing
-- [ ] Allow player to type more commands that do the same thing (e.g. "go north", "move north", "go up", etc)
 
 ### Ideas for changes/improvements
 - [ ] Use colorized text to highlight keywords.
-- [ ] Add inventory using a dictionary.
 - [ ] Add combat and HP (change "caught" to "encounter")
+- [ ] If player digs, and the key isn't there, chance to find more torches or other items
 - [ ] Allow player to find more items, helpful items like torches and score items like gems
 - [ ] Add high score
 - [ ] Warn player when monster is close
-- [ ] Instead of treasure, player looks for key to escape dungeon? Add Exit and make visible on map
 - [ ] Monster chases player when torch is lit?
 - [ ] Player finds items that protect them from the monster?
-- [ ] If player digs, and treasure isn't there, chance to find more torches or other items
 - [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
 - [ ] Convert this entire game into a graphical version
 - [ ] Add more color to text
 - [ ] Add additional commands that display text but do nothing (e.g. "bang on door" -> "there is no response")
 
 ### Bugs/Issues
+- [ ] The key doesn't disappear from the map when it's found, and the player just keeps getting more keys in their inventory if they dig in the same spot
 - [ ] The alt codes for the icons on the map are different sizes and make the map look wonky. Find a set that are all the same dimensions
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
