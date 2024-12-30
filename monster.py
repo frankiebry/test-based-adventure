@@ -1,6 +1,7 @@
 import random
 from settings import settings
 from utils import calculate_distance
+from typewriter import typewriter
 
 class Monster:
     def __init__(self, initial_position):
@@ -87,6 +88,7 @@ class Monster:
             self.turns_since_move = 0
             # If the monster is close to the player, it chases the player,
             if self.is_near_player(player_position):
+                typewriter("\033[91mYou hear a bloodcurdling howl as a foul stench fills the air.\033[0m", 0.05)
                 self.chase_player(player_position)
             # else it moves randomly
             else:

@@ -7,8 +7,7 @@
 - [ ] If player digs, and the key isn't there, chance to find more torches or other items
 - [ ] Allow player to find more items, helpful items like torches and score items like gems
 - [ ] Add high score
-- [ ] Warn player when monster is close
-- [ ] Monster chases player when torch is lit?
+- [ ] Monster heads straight to the player's last known location when a torch is lit, unless it's 2 paces away.
 - [ ] Player finds items that protect them from the monster?
 - [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
 - [ ] Convert this entire game into a graphical version
@@ -20,6 +19,7 @@
 - [ ] The alt codes for the icons on the map are different sizes and make the map look wonky. Find a set that are all the same dimensions
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
+- [ ] Apparently if ANSI escape codes that set the text color explicitly are not reset with \033[0m, the terminal will continue applying the color to subsequent text, even after the program exits. The terminal has to be closed to fix this.
 
 ### Clean Code
 - [ ] All strings should use '' instead of ""? Or at least just be consistent

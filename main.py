@@ -1,8 +1,8 @@
-from monster import Monster # class to represent the monster in the game
-from typewriter import typewriter # function to simulate typing text
-from settings import settings # where all variables are initialized and reset
-from utils import calculate_distance # formula to calculate distance between two points
-from commands import commands_dict # import dictionary of all possible commands
+from monster import Monster
+from typewriter import typewriter
+from settings import settings
+from utils import calculate_distance
+from commands import commands_dict 
 from inventory import inventory
 
 # Our main game class
@@ -62,8 +62,8 @@ class Game:
             print(' ')
             typewriter("\033[92m♙\033[0m - Your current location.", 0.05)
             typewriter("\033[96m⛝\033[0m - Spots where you've already dug.", 0.05)
-            typewriter("\033[91m♞\033[0m - The monster is at this location", 0.05)
-            typewriter("⬕ - The exit is at this location", 0.05)
+            typewriter("\033[91m♞\033[0m - You see an ominous shadowy standing there.", 0.05)
+            typewriter("⬕ - The exit is at this location.", 0.05)
     
             if inventory.items["torch"] == 1: # Handle singular vs. plural in the message.
                 typewriter(f'The light has gone out. You have {inventory.items["torch"]} torch left', 0.05)
@@ -117,14 +117,18 @@ class Game:
             print(' ')
             typewriter('Here are the rules..', 0.05)
             print(' ')
-            typewriter('You are in a dark cave and need to find the key to the exit.', 0.05)
+            typewriter('You are in a dark cave and need to find the \033[93mkey \033[0m to the exit.', 0.05)
             typewriter('Each turn you can try to do one of the following:', 0.05)
             typewriter('* Move north, south, east or west', 0.05)
-            typewriter('* Use your metal detector to find the key.', 0.05)
-            typewriter('* Dig to find the key. You may also find helpful items or treasure.', 0.05)
+            typewriter('* Use your metal detector to find the \033[93mkey \033[0m.', 0.05)
+            typewriter('* Dig to find the \033[93mkey \033[0m. You may also find helpful items or treasure.', 0.05)
             typewriter('* Light a torch to check your map. You only get 3 torches.', 0.05)
             typewriter('* Try to unlock the exit.', 0.05)
-            typewriter('Beware, there is a monster in the cave with you. Each turn the monster will move one pace.', 0.05)
+            typewriter(
+                'Beware, there is a \033[91mmonster \033[0m in the cave with you. '
+                'Each turn the \033[91monster \033[0m will move one pace.',
+                0.05
+            )
             typewriter('Good luck!', 0.05)
 
     def play_again(self):
@@ -173,7 +177,7 @@ class Game:
                 case _ if command in commands_dict["dig"]:
                     if self.player_position == self.key_position:
                         inventory.add_item("key", 1)  # Add the key to the inventory
-                        typewriter("You found the key!", 0.05)
+                        typewriter("You found the \033[93mkey \033[0m!", 0.05)
                         print(' ')
                     else:
                         typewriter("There is nothing here.", 0.05)
@@ -202,7 +206,7 @@ class Game:
                                 typewriter("Thank you for playing!", 0.05)
                                 break
                         else:
-                            typewriter("The door is locked. You need the key to open it.", 0.05)
+                            typewriter("The door is locked. You need the \033[93mkey \033[0m to open it.", 0.05)
                     else:
                         typewriter("There is nothing to unlock here.", 0.05)
 
@@ -224,7 +228,7 @@ class Game:
                 self.monster.move(self.player_position)
                 if self.monster.check_if_caught(self.player_position):
                     print(' ')
-                    typewriter(f'You were caught by the monster!', 0.05)
+                    typewriter(f'\033[91mYou were caught by the monster!\33[0m', 0.05)
                     print(' ')
                     if self.play_again():
                         self.reset_game()
