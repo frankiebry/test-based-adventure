@@ -103,14 +103,14 @@ class Game:
         if response in ['n', 'no']:
             print(" ")
             typewriter("Here are the rules:", 0.05)
+            print(" ")
             typewriter("You are in a dark cave. Each turn you can use a command to do one of the following.", 0.05)
-            typewriter("- Move north, south, east or west", 0.05)
-            typewriter("- Use your metal detector to sweep for treasure.", 0.05)
-            typewriter("- Dig for treasure.", 0.05)
-            typewriter("- Light a torch to check your map. You only get 3 torches.", 0.05)
+            typewriter("* Move north, south, east or west", 0.05)
+            typewriter("* Use your metal detector to sweep for treasure.", 0.05)
+            typewriter("* Dig for treasure.", 0.05)
+            typewriter("* Light a torch to check your map. You only get 3 torches.", 0.05)
             typewriter("Beware, there is a monster in the cave with you. Each turn the monster moves one pace.", 0.05)
             typewriter("The game will end if you find the treasure... or the monster catches you. Good luck!", 0.05)
-            print(" ")
 
     def play_again(self):
         """Prompt the player to decide whether to play again."""
@@ -171,7 +171,8 @@ class Game:
 
                 case "light torch" | "light a torch" | "use torch" | "use a torch" | "look around" | \
                     "where am I?" | "where am I" | "I don't know where I am" | "I don't know where I am." | \
-                    "check map" | "check my map" | "look at map" | "look at my map" | "look at the map":
+                    "check map" | "check my map" | "look at map" | "look at my map" | "look at the map" | \
+                    "use map" | "use my map" | "use the map" | "use the map here":
                     self.light_torch()
 
                 case "sweep" | "sweep for treasure" | "sweep here" | "sweep for treasure here" | \
