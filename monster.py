@@ -11,6 +11,7 @@ class Monster:
         initial_position (tuple): The (x, y) coordinates of the monster's starting position.
         """
         self.position = initial_position
+        self.turns_since_move = 0  # Track how many turns since the last move for the cooldown timer
 
     def random_move(self):
         """
@@ -76,14 +77,17 @@ class Monster:
     def move(self, player_position):
         """
         Determines the monster's movement based on the turn count and its proximity to the player.
-        If the monster is near the player, it chases the player; otherwise, it moves randomly.
+        The monster moves every two turns. If it's near the player, it chases the player; otherwise, it moves randomly.
         
         Args:
         player_position (tuple): The (x, y) coordinates of the player's position.
         """
-        # If the monster is close to the player, it chases the player,
-        if self.is_near_player(player_position):
-            self.chase_player(player_position)
-        # else it moves randomly
-        else:
-            self.random_move()
+        self.turns_since_move += 1
+        if self.turns_since_move >= 2:
+            self.turns_since_move = 0
+            # If the monster is close to the player, it chases the player,
+            if self.is_near_player(player_position):
+                self.chase_player(player_position)
+            # else it moves randomly
+            else:
+                self.random_move()
