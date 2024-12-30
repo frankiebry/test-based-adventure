@@ -76,15 +76,18 @@ class Game:
 
     def use_metal_detector(self):
         """Use the metal detector to get a hint about the key's location."""
-        distance = calculate_distance(self.player_position, self.key_position)
-        if distance == 0:
-            typewriter("The metal detector is going wild!!", 0.05)
-        elif distance == 1:
-            typewriter("The metal detector is beeping rapidly!", 0.05)
-        elif distance == 2:
-            typewriter("The metal detector is slowly beeping.", 0.05)
-        else:
+        if self.key_position is None:
             typewriter("The metal detector is silent.", 0.05)
+        else:
+            distance = calculate_distance(self.player_position, self.key_position)
+            if distance == 0:
+                typewriter("The metal detector is going wild!!", 0.05)
+            elif distance == 1:
+                typewriter("The metal detector is beeping rapidly!", 0.05)
+            elif distance == 2:
+                typewriter("The metal detector is slowly beeping.", 0.05)
+            else:
+                typewriter("The metal detector is silent.", 0.05)
 
     def display_commands(self):
         """Display the list of available commands to the player."""
