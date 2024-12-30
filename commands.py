@@ -16,7 +16,7 @@ commands_dict = {
         "look for treasure here", "search", "search here", "search for treasure"
     ],
     "torch": [
-        "light torch", "light a torch", "use torch", "use a torch", "look around", 
+        "light torch", "light a torch", "use torch", "use a torch", "look around", "light my torch",
         "where am i?", "where am i", "i don't know where i am", "check map", 
         "check my map", "look at map", "look at my map", "use map", "use my map"
     ],
