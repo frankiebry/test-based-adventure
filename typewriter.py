@@ -1,10 +1,10 @@
 import sys
 import time
 
-# Make text output slower for immersion
 def typewriter(message, speed):
     """
     Simulates typing out a message one character at a time with a specified speed.
+    The intent is to create immersion and a sense of anticipation for the player.
 
     Args:
     message (str): The message to be typed out.
