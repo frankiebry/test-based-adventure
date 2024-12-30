@@ -1,8 +1,10 @@
-from monster import Monster
-from typewriter import typewriter
-from settings import settings
-from utils import calculate_distance
+from monster import Monster # class to represent the monster in the game
+from typewriter import typewriter # function to simulate typing text
+from settings import settings # where all variables are initialized and reset
+from utils import calculate_distance # formula to calculate distance between two points
+from commands import commands_dict # import dictionary of all possible commands
 
+# Our main game class
 class Game:
     def __init__(self):
         """Initialize the game by resetting to default settings."""
@@ -125,37 +127,37 @@ class Game:
             command = input("What do you want to do?: ").strip().lower()
             monster_should_move = True # Assume the monster will move on each turn by default
 
+            # We are using a dictionary of lists to store the possible commands
             match command:
-                case "go north" | "move north" | "go up" | "move up":
+                case _ if command in commands_dict["north"]:
                     if self.player_position[1] > 0:
                         self.player_position = (self.player_position[0], self.player_position[1] - 1)
                         typewriter("You moved north.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "go south" | "move south" | "go down" | "move down":
+                case _ if command in commands_dict["down"]:
                     if self.player_position[1] < settings.GRID_HEIGHT - 1:
                         self.player_position = (self.player_position[0], self.player_position[1] + 1)
                         typewriter("You moved south.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "go east" | "move east" | "go right" | "move right":
+                case _ if command in commands_dict["right"]:
                     if self.player_position[0] < settings.GRID_WIDTH - 1:
                         self.player_position = (self.player_position[0] + 1, self.player_position[1])
                         typewriter("You moved east.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "go west" | "move west" | "go left" | "move left":
+                case _ if command in commands_dict["left"]:
                     if self.player_position[0] > 0:
                         self.player_position = (self.player_position[0] - 1, self.player_position[1])
                         typewriter("You moved west.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "dig" | "dig for treasure" | "dig here" | "look for treasure" | \
-                    "look for treasure here" | "search" | "search here" | "search for treasure":
+                case _ if command in commands_dict["dig"]:
                     if self.treasure_found():
                         typewriter("Congratulations! You found the treasure!", 0.05)
                         print(" ")
@@ -169,23 +171,17 @@ class Game:
                         typewriter("There is nothing here.", 0.05)
                         self.searched_positions.append(self.player_position) # Mark the spot as searched
 
-                case "light torch" | "light a torch" | "use torch" | "use a torch" | "look around" | \
-                    "where am I?" | "where am I" | "I don't know where I am" | "I don't know where I am." | \
-                    "check map" | "check my map" | "look at map" | "look at my map" | "look at the map" | \
-                    "use map" | "use my map" | "use the map" | "use the map here":
+                case _ if command in commands_dict["torch"]:
                     self.light_torch()
 
-                case "sweep" | "sweep for treasure" | "sweep here" | "sweep for treasure here" | \
-                    "use metal detector" | "use metal detector here" | \
-                    "use the metal detector" | "use the metal detector here":
+                case _ if command in commands_dict["sweep"]:
                     self.sweep_for_treasure()
 
-                case "help" | "commands" | "options" | "I don't know what to do" | \
-                    "what can I do" | "what can I do?" | "what do I do" | "what do I do?":
+                case _ if command in commands_dict["help"]:
                     self.display_commands()
                     monster_should_move = False
 
-                case "cheat" | "debug":
+                case _ if command in commands_dict["debug"]:
                     print(" ")
                     self.debug()
                     monster_should_move = False
