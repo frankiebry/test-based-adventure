@@ -1,5 +1,5 @@
 from monster import Monster # class to represent the monster in the game
-from typewriter import typewriter # function to simulate typing text
+from typewriter import typewriter, TypewriterError # function to simulate typing text and custom error
 from settings import settings # where all variables are initialized and reset
 from utils import calculate_distance # formula to calculate distance between two points
 from commands import commands_dict # import dictionary of all possible commands
@@ -187,7 +187,7 @@ class Game:
                     monster_should_move = False
 
                 case _:
-                    typewriter(f'I don't know what "{command}" means.', 0.05)
+                    typewriter(f'I don\'t know what "{command}" means.', 0.05)
                     print(' ')
                     monster_should_move = False
 
@@ -195,13 +195,13 @@ class Game:
                 self.monster.move(self.player_position)
                 if self.monster.check_if_caught(self.player_position):
                     print(' ')
-                    typewriter(f"You were caught by the monster!", 0.05)
+                    typewriter(f'You were caught by the monster!', 0.05)
                     print(' ')
                     if self.play_again():
                         self.reset_game()
                         continue
                     else:
-                        typewriter("Thank you for playing!", 0.05)
+                        typewriter('Thank you for playing!', 0.05)
                         break
 
         print(' ')
