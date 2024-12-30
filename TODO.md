@@ -20,6 +20,7 @@
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
 - [ ] Apparently if ANSI escape codes that set the text color explicitly are not reset with \033[0m, the terminal will continue applying the color to subsequent text, even after the program exits. The terminal has to be closed to fix this.
+- [ ] The typewriter "stutters" when printing color text
 
 ### Clean Code
 - [ ] All strings should use '' instead of ""? Or at least just be consistent

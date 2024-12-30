@@ -115,18 +115,18 @@ class Game:
         ).strip().lower()
         if response in ['n', 'no']:
             print(' ')
-            typewriter('Here are the rules..', 0.05)
+            typewriter('Here are the rules...', 0.05)
             print(' ')
-            typewriter('You are in a dark cave and need to find the \033[93mkey \033[0m to the exit.', 0.05)
+            typewriter('You are in a dark cave and need to find the \033[93mkey\033[0m to the exit.', 0.05)
             typewriter('Each turn you can try to do one of the following:', 0.05)
             typewriter('* Move north, south, east or west', 0.05)
-            typewriter('* Use your metal detector to find the \033[93mkey \033[0m.', 0.05)
-            typewriter('* Dig to find the \033[93mkey \033[0m. You may also find helpful items or treasure.', 0.05)
+            typewriter('* Use your metal detector to find the \033[93mkey\033[0m.', 0.05)
+            typewriter('* Dig to find the \033[93mkey\033[0m. You may also find helpful items or treasure.', 0.05)
             typewriter('* Light a torch to check your map. You only get 3 torches.', 0.05)
             typewriter('* Try to unlock the exit.', 0.05)
             typewriter(
-                'Beware, there is a \033[91mmonster \033[0m in the cave with you. '
-                'Each turn the \033[91monster \033[0m will move one pace.',
+                'Beware, there is a \033[91mmonster\033[0m in the cave with you. '
+                'Each turn the \033[91mmonster\033[0m will move one pace.',
                 0.05
             )
             typewriter('Good luck!', 0.05)
@@ -177,7 +177,7 @@ class Game:
                 case _ if command in commands_dict["dig"]:
                     if self.player_position == self.key_position:
                         inventory.add_item("key", 1)  # Add the key to the inventory
-                        typewriter("You found the \033[93mkey \033[0m!", 0.05)
+                        typewriter("You found the \033[93mkey\033[0m!", 0.05)
                         print(' ')
                     else:
                         typewriter("There is nothing here.", 0.05)
@@ -206,7 +206,7 @@ class Game:
                                 typewriter("Thank you for playing!", 0.05)
                                 break
                         else:
-                            typewriter("The door is locked. You need the \033[93mkey \033[0m to open it.", 0.05)
+                            typewriter("The door is locked. You need the \033[93mkey\033[0m to open it.", 0.05)
                     else:
                         typewriter("There is nothing to unlock here.", 0.05)
 
