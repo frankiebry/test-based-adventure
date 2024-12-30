@@ -6,7 +6,7 @@
 - [ ] Add inventory using a dictionary.
 - [ ] Allow player to find more items
 - [ ] Warn player when monster is close
-- [ ] More commands
+- [ ] Find a more efficient way to handle all the possible commands
 - [ ] Instead of treasure, player looks for key to escape dungeon?
 - [ ] Monster chases player when torch is lit?
 - [ ] Player finds items that protect them from the monster?
@@ -17,7 +17,7 @@
 
 ### Bugs/Issues
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
-- [ ] The last icon that is drawn on the map will cover any icon drawn before it.
+- [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
 
 ### Clean Code
 - [ ] Find a better solution to the way reset_game() and settings.reset() are used to initialize and reset variables.

@@ -80,14 +80,13 @@ class Game:
         typewriter("* Legal commands *", 0.02)
         typewriter("*****************", 0.02)
         print(" ")
-        typewriter("GO NORTH", 0.02)
-        typewriter("GO SOUTH", 0.02)
-        typewriter("GO EAST", 0.02)
-        typewriter("GO WEST", 0.02)
-        typewriter("DIG", 0.02)
-        typewriter("LIGHT TORCH: check your map", 0.02)
-        typewriter("SWEEP: use metal detector", 0.02)
-        typewriter("HELP: displays these commands again (the monster will not move)", 0.02)
+        typewriter("MOVE NORTH", 0.02)
+        typewriter("MOVE SOUTH", 0.02)
+        typewriter("MOVE EAST", 0.02)
+        typewriter("MOVE WEST", 0.02)
+        typewriter("DIG HERE", 0.02)
+        typewriter("USE A TORCH: check your map", 0.02)
+        typewriter("SWEEP FOR TREASURE: use metal detector", 0.02)
         print(" ")
 
     def debug(self):
@@ -106,20 +105,19 @@ class Game:
             typewriter("Here are the rules:", 0.05)
             typewriter("You are in a dark cave. Each turn you can use a command to do one of the following.", 0.05)
             typewriter("- Move north, south, east or west", 0.05)
-            typewriter("- Use a metal detector.", 0.05)
+            typewriter("- Use your metal detector to sweep for treasure.", 0.05)
             typewriter("- Dig for treasure.", 0.05)
-            typewriter("- Light a torch and check your map. You only get 3 torches.", 0.05)
+            typewriter("- Light a torch to check your map. You only get 3 torches.", 0.05)
             typewriter("Beware, there is a monster in the cave with you. Each turn the monster moves one pace.", 0.05)
             typewriter("The game will end if you find the treasure... or the monster catches you. Good luck!", 0.05)
             print(" ")
-            self.display_commands()
 
     def play_again(self):
         """Prompt the player to decide whether to play again."""
         response = input("Do you want to play again? (Y/N): ").strip().lower()
         return response in ["y", "yes"]
 
-    def main_loop(self):
+    def run(self):
         """Run the main game loop, handling player commands and game logic."""
         self.welcome_screen()
         while True:
@@ -128,35 +126,36 @@ class Game:
             monster_should_move = True # Assume the monster will move on each turn by default
 
             match command:
-                case "go north":
+                case "go north" | "move north" | "go up" | "move up":
                     if self.player_position[1] > 0:
                         self.player_position = (self.player_position[0], self.player_position[1] - 1)
                         typewriter("You moved north.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "go south":
+                case "go south" | "move south" | "go down" | "move down":
                     if self.player_position[1] < settings.GRID_HEIGHT - 1:
                         self.player_position = (self.player_position[0], self.player_position[1] + 1)
                         typewriter("You moved south.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "go east":
+                case "go east" | "move east" | "go right" | "move right":
                     if self.player_position[0] < settings.GRID_WIDTH - 1:
                         self.player_position = (self.player_position[0] + 1, self.player_position[1])
                         typewriter("You moved east.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "go west":
+                case "go west" | "move west" | "go left" | "move left":
                     if self.player_position[0] > 0:
                         self.player_position = (self.player_position[0] - 1, self.player_position[1])
                         typewriter("You moved west.", 0.05)
                     else:
                         typewriter("The way is blocked.", 0.05)
 
-                case "dig":
+                case "dig" | "dig for treasure" | "dig here" | "look for treasure" | \
+                    "look for treasure here" | "search" | "search here" | "search for treasure" | \:
                     if self.treasure_found():
                         typewriter("Congratulations! You found the treasure!", 0.05)
                         print(" ")
@@ -170,17 +169,22 @@ class Game:
                         typewriter("There is nothing here.", 0.05)
                         self.searched_positions.append(self.player_position) # Mark the spot as searched
 
-                case "light torch":
+                case "light torch" | "light a torch" | "use torch" | "use a torch" | "look around" | \
+                    "where am I?" | "where am I" | "I don't know where I am" | "I don't know where I am." | \
+                    "check map" | "check my map" | "look at map" | "look at my map" | "look at the map":
                     self.light_torch()
 
-                case "sweep":
+                case "sweep" | "sweep for treasure" | "sweep here" | "sweep for treasure here" | \
+                    "use metal detector" | "use metal detector here" | \
+                    "use the metal detector" | "use the metal detector here":
                     self.sweep_for_treasure()
 
-                case "help":
+                case "help" | "commands" | "options" | "I don't know what to do" | \
+                    "what can I do" | "what can I do?" | "what do I do" | "what do I do?":
                     self.display_commands()
                     monster_should_move = False
 
-                case "cheat":
+                case "cheat" | "debug":
                     print(" ")
                     self.debug()
                     monster_should_move = False
@@ -209,4 +213,4 @@ class Game:
 # Run the game if this script is executed
 if __name__ == '__main__':
     game = Game()
-    game.main_loop()
+    game.run()
