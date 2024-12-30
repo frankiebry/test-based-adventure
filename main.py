@@ -63,9 +63,11 @@ class Game:
             print(' ')
             self.draw_map()
             print(' ')
-            typewriter("\033[92m⧆\033[0m: Your current location.", 0.05)
-            typewriter("\033[96mX\033[0m: Spots you've already dug.", 0.05)
-            typewriter("\033[95mM\033[0m: You see an ominous shadowy figure standing there...", 0.1)
+            typewriter("\033[92m♙\033[0m - Your current location.", 0.05)
+            typewriter("\033[96m⛝\033[0m - Spots where you've already dug.", 0.05)
+            typewriter("\033[91m♞\033[0m - The monster is at this location", 0.05)
+            typewriter("⬕ - The exit is at this location", 0.05)
+    
             if self.remaining_torches == 1: # Handle singular vs. plural in the message.
                 typewriter(f"The light has gone out. You have {self.remaining_torches} torch left", 0.05)
             else:
