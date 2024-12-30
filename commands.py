@@ -28,6 +28,12 @@ commands_dict = {
         "check for treasure", "check for treasure here", "check for treasure nearby", 
         "check if the treasure is near"
     ],
+    "unlock": [
+        "unlock the door", "open the door", "use the key", "use key",
+        "unlock door", "open door", "use key here", "use the key here",
+        "unlock the door here", "open the door here", "open the exit",
+        "unlock the exit", "use the key on the door", "use the key on the exit",
+    ],
     "help": [
         "help", "commands", "options", "i don't know what to do", "what can i do", 
         "what can i do?", "what do i do", "what do i do?"

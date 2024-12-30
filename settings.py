@@ -11,7 +11,7 @@ class Settings:
         """
         self.GRID_WIDTH = random.randint(4, 8) # The map will not be larger than 8x8
         self.GRID_HEIGHT = random.randint(4, 8)
-        self.DEFAULT_NUM_OF_TORCHES = 3
+        # self.DEFAULT_NUM_OF_TORCHES = 3
         self.DEFAULT_SEARCHED_POSITIONS = []
         self.DEFAULT_PLAYER_POS = self.randomize_position()
         self.DEFAULT_KEY_POS = self.randomize_position()

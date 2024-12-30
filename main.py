@@ -3,6 +3,7 @@ from typewriter import typewriter # function to simulate typing text
 from settings import settings # where all variables are initialized and reset
 from utils import calculate_distance # formula to calculate distance between two points
 from commands import commands_dict # import dictionary of all possible commands
+from inventory import inventory
 
 # Our main game class
 class Game:
@@ -12,17 +13,13 @@ class Game:
 
     def reset_game(self):
         """Reset the game to its initial state with default settings."""
+        inventory.reset() # Reset player inventory to its default state
         settings.reset() # Reset the settings to their default values
-        self.remaining_torches = settings.DEFAULT_NUM_OF_TORCHES
         self.searched_positions = settings.DEFAULT_SEARCHED_POSITIONS
         self.player_position = settings.DEFAULT_PLAYER_POS
         self.key_position = settings.DEFAULT_KEY_POS
         self.exit_position = settings.DEFAULT_EXIT_POS
         self.monster = Monster(settings.DEFAULT_MONSTER_POS)
-
-    def key_found(self):
-        """Check if the player is at the key's position."""
-        return self.player_position == self.key_position
 
     def draw_map(self, show_key=False):
         """
@@ -57,8 +54,8 @@ class Game:
 
     def light_torch(self):
         """Use a torch to reveal the map and display helpful information."""
-        if self.remaining_torches > 0: # Check if the player has any torches left
-            self.remaining_torches -= 1
+        if inventory.has_item("torch"): # Check if the player has any torches left
+            inventory.use_item("torch")  # Use one torch from inventory
             typewriter("You light a torch and check your map.", 0.05)
             print(' ')
             self.draw_map()
@@ -68,10 +65,10 @@ class Game:
             typewriter("\033[91m♞\033[0m - The monster is at this location", 0.05)
             typewriter("⬕ - The exit is at this location", 0.05)
     
-            if self.remaining_torches == 1: # Handle singular vs. plural in the message.
-                typewriter(f"The light has gone out. You have {self.remaining_torches} torch left", 0.05)
+            if inventory.items["torch"] == 1: # Handle singular vs. plural in the message.
+                typewriter(f'The light has gone out. You have {inventory.items["torch"]} torch left', 0.05)
             else:
-                typewriter(f"The light has gone out. You have {self.remaining_torches} torches left", 0.05)
+                typewriter(f'The light has gone out. You have {inventory.items["torch"]} torches left', 0.05)
             print(' ')
         else:
             typewriter("You don't have any torches left", 0.05)
@@ -102,6 +99,7 @@ class Game:
         typewriter("DIG HERE", 0.02)
         typewriter("USE A TORCH: check your map", 0.02)
         typewriter("SWEEP FOR KEY: use metal detector", 0.02)
+        typewriter("UNLOCK DOOR: unlock the exit", 0.02)
         print(' ')
 
     def debug(self):
@@ -120,13 +118,14 @@ class Game:
             typewriter('Here are the rules..', 0.05)
             print(' ')
             typewriter('You are in a dark cave and need to find the key to the exit.', 0.05)
-            typewriter('Each turn you can do one of the following:', 0.05)
+            typewriter('Each turn you can try to do one of the following:', 0.05)
             typewriter('* Move north, south, east or west', 0.05)
             typewriter('* Use your metal detector to find the key.', 0.05)
             typewriter('* Dig to find the key. You may also find helpful items or treasure.', 0.05)
             typewriter('* Light a torch to check your map. You only get 3 torches.', 0.05)
-            typewriter('Beware, there is a monster in the cave with you. Each turn the monster moves one pace.', 0.05)
-            typewriter('The game will end if you find the key... or the monster catches you. Good luck!', 0.05)
+            typewriter('* Try to unlock the exit.', 0.05)
+            typewriter('Beware, there is a monster in the cave with you. Each turn the monster will move one pace.', 0.05)
+            typewriter('Good luck!', 0.05)
 
     def play_again(self):
         """Prompt the player to decide whether to play again."""
@@ -172,15 +171,10 @@ class Game:
                         typewriter("The way is blocked.", 0.05)
 
                 case _ if command in commands_dict["dig"]:
-                    if self.key_found():
-                        typewriter("Congratulations! You found the key!", 0.05)
+                    if self.player_position == self.key_position:
+                        inventory.add_item("key", 1)  # Add the key to the inventory
+                        typewriter("You found the key!", 0.05)
                         print(' ')
-                        if self.play_again():
-                            self.reset_game()
-                            continue
-                        else:
-                            typewriter("Thank you for playing!", 0.05)
-                            break
                     else:
                         typewriter("There is nothing here.", 0.05)
                         self.searched_positions.append(self.player_position) # Mark the spot as searched
@@ -190,6 +184,22 @@ class Game:
 
                 case _ if command in commands_dict["sweep"]:
                     self.use_metal_detector()
+
+                case _ if command in commands_dict["unlock"]:
+                    if self.player_position == self.exit_position: # Check if the player is at the exit
+                        if inventory.has_item("key"): # Check if the player has the key
+                            typewriter("You unlock the door and escape!", 0.05)
+                            print(' ')
+                            if self.play_again():
+                                self.reset_game()
+                                continue
+                            else:
+                                typewriter("Thank you for playing!", 0.05)
+                                break
+                        else:
+                            typewriter("The door is locked. You need the key to open it.", 0.05)
+                    else:
+                        typewriter("There is nothing to unlock here.", 0.05)
 
                 case _ if command in commands_dict["help"]:
                     self.display_commands()

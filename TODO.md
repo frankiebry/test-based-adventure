@@ -16,6 +16,7 @@
 - [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
 - [ ] Convert this entire game into a graphical version
 - [ ] Add more color to text
+- [ ] Add additional commands that display text but do nothing (e.g. "bang on door" -> "there is no response")
 
 ### Bugs/Issues
 - [ ] The alt codes for the icons on the map are different sizes and make the map look wonky. Find a set that are all the same dimensions
@@ -23,8 +24,6 @@
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
 
 ### Clean Code
-- [ ] Find a better solution to the way reset_game() and settings.reset() are used to initialize and reset variables.
-It seems kind of redundant?
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
 - [ ] Comment everything that doesn't have a clear purpose or needs to be explained?
 - [ ] Functions need to be better named and commented using docstrings?
