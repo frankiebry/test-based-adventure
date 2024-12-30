@@ -22,7 +22,6 @@
 ### Clean Code
 - [ ] Find a better solution to the way reset_game() and settings.reset() are used to initialize and reset variables.
 It seems kind of redundant?
-- [ ] Create "randomize()" function that returns a tuple of random values? Then use this function anytime a position needs to be reset or randomize?
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
 - [ ] Comment everything that doesn't have a clear purpose or needs to be explained?
 - [ ] Functions need to be better named and commented using docstrings?
