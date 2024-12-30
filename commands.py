@@ -29,7 +29,7 @@ commands_dict = {
     ],
     "sweep": [
         "sweep", "sweep for treasure", "sweep here", "sweep for treasure here", 
-        "use metal detector", "use metal detector here", "use detector", 
+        "use metal detector", "use metal detector here", "use detector", "use my metal detector",
         "use detector here", "use the metal detector", "use the metal detector here", 
         "detect treasure", "check if treasure is near", "check if treasure is near here", 
         "check for treasure", "check for treasure here", "check for treasure nearby", 
