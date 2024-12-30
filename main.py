@@ -129,7 +129,7 @@ class Game:
 
             # We are using a dictionary of lists to store the possible commands
             match command:
-                case _ if command in commands_dict["north"]:
+                case _ if command in commands_dict["up"]:
                     if self.player_position[1] > 0:
                         self.player_position = (self.player_position[0], self.player_position[1] - 1)
                         typewriter("You moved north.", 0.05)
