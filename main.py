@@ -46,7 +46,8 @@ class Game:
         exit_x, exit_y = self.exit_position
         grid[exit_y][exit_x] = '⬕ ' # Default White
         
-        if show_key:
+        # Draw the key if cheat is used and key is still on the map
+        if show_key and self.key_position:
             key_x, key_y = self.key_position
             grid[key_y][key_x] = '\033[93m⚿ \033[0m' # Bright Yellow
         for row in grid: # Print the map row by row
@@ -174,9 +175,11 @@ class Game:
                     else:
                         typewriter("The way is blocked.", 0.05)
 
+                # TODO put this in it's own dig function?
                 case _ if command in commands_dict["dig"]:
                     if self.player_position == self.key_position:
                         inventory.add_item("key", 1)  # Add the key to the inventory
+                        self.key_position = None  # Remove the key from the map
                         typewriter("You found the \033[93mkey\033[0m!", 0.05)
                         print(' ')
                     else:
