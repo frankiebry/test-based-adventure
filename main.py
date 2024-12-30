@@ -71,7 +71,6 @@ class Game:
                 typewriter(f'The light has gone out. You have {inventory.items["torch"]} torch left', 0.05)
             else:
                 typewriter(f'The light has gone out. You have {inventory.items["torch"]} torches left', 0.05)
-            print(' ')
         else:
             typewriter("You don't have any torches left", 0.05)
 
@@ -239,7 +238,6 @@ class Game:
 
                 case _:
                     typewriter(f'I don\'t know what "{command}" means.', 0.05)
-                    print(' ')
                     monster_should_move = False
 
             if monster_should_move:
