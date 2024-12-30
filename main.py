@@ -49,9 +49,9 @@ class Game:
         if self.remaining_torches > 0: # Check if the player has any torches left
             self.remaining_torches -= 1
             typewriter("You light a torch and check your map.", 0.05)
-            print(" ")
+            print(' ')
             self.draw_map()
-            print(" ")
+            print(' ')
             typewriter("\033[92m⧆\033[0m: Your current location.", 0.05)
             typewriter("\033[96mX\033[0m: Spots you've already dug.", 0.05)
             typewriter("\033[95mM\033[0m: You see an ominous shadowy figure standing there...", 0.1)
@@ -59,7 +59,7 @@ class Game:
                 typewriter(f"The light has gone out. You have {self.remaining_torches} torch left", 0.05)
             else:
                 typewriter(f"The light has gone out. You have {self.remaining_torches} torches left", 0.05)
-            print(" ")
+            print(' ')
         else:
             typewriter("You don't have any torches left", 0.05)
 
@@ -77,11 +77,11 @@ class Game:
 
     def display_commands(self):
         """Display the list of available commands to the player."""
-        print(" ")
+        print(' ')
         typewriter("*****************", 0.02)
         typewriter("* Legal commands *", 0.02)
         typewriter("*****************", 0.02)
-        print(" ")
+        print(' ')
         typewriter("MOVE NORTH", 0.02)
         typewriter("MOVE SOUTH", 0.02)
         typewriter("MOVE EAST", 0.02)
@@ -89,13 +89,13 @@ class Game:
         typewriter("DIG HERE", 0.02)
         typewriter("USE A TORCH: check your map", 0.02)
         typewriter("SWEEP FOR TREASURE: use metal detector", 0.02)
-        print(" ")
+        print(' ')
 
     def debug(self):
         """Display the full map, including the treasure's location (cheat/debug mode)."""
-        print(" ")
+        print(' ')
         self.draw_map(show_treasure=True) # Show the treasure on the map
-        print(" ")
+        print(' ')
 
     def welcome_screen(self):
         """Display the welcome screen and explain the rules for first timers."""
@@ -103,9 +103,9 @@ class Game:
             "Welcome to Frankie's text based adventure game. Have you played this game before? (Y/N): "
         ).strip().lower()
         if response in ['n', 'no']:
-            print(" ")
+            print(' ')
             typewriter("Here are the rules:", 0.05)
-            print(" ")
+            print(' ')
             typewriter("You are in a dark cave. Each turn you can use a command to do one of the following.", 0.05)
             typewriter("* Move north, south, east or west", 0.05)
             typewriter("* Use your metal detector to sweep for treasure.", 0.05)
@@ -123,7 +123,7 @@ class Game:
         """Run the main game loop, handling player commands and game logic."""
         self.welcome_screen()
         while True:
-            print(" ")
+            print(' ')
             command = input("What do you want to do?: ").strip().lower()
             monster_should_move = True # Assume the monster will move on each turn by default
 
@@ -160,7 +160,7 @@ class Game:
                 case _ if command in commands_dict["dig"]:
                     if self.treasure_found():
                         typewriter("Congratulations! You found the treasure!", 0.05)
-                        print(" ")
+                        print(' ')
                         if self.play_again():
                             self.reset_game()
                             continue
@@ -182,21 +182,21 @@ class Game:
                     monster_should_move = False
 
                 case _ if command in commands_dict["debug"]:
-                    print(" ")
+                    print(' ')
                     self.debug()
                     monster_should_move = False
 
                 case _:
-                    typewriter(f"I don't know what '{command}' means.", 0.05)
-                    print(" ")
+                    typewriter(f'I don't know what "{command}" means.', 0.05)
+                    print(' ')
                     monster_should_move = False
 
             if monster_should_move:
                 self.monster.move(self.player_position)
                 if self.monster.check_if_caught(self.player_position):
-                    print(" ")
+                    print(' ')
                     typewriter(f"You were caught by the monster!", 0.05)
-                    print(" ")
+                    print(' ')
                     if self.play_again():
                         self.reset_game()
                         continue
@@ -204,7 +204,7 @@ class Game:
                         typewriter("Thank you for playing!", 0.05)
                         break
 
-        print(" ")
+        print(' ')
         typewriter("GAME OVER", 0.5)
 
 # Run the game if this script is executed
