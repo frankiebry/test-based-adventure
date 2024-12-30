@@ -17,7 +17,7 @@ commands_dict = {
     ],
     "torch": [
         "light torch", "light a torch", "use torch", "use a torch", "look around", 
-        "where am I?", "where am I", "I don't know where I am", "check map", 
+        "where am i?", "where am i", "i don't know where i am", "check map", 
         "check my map", "look at map", "look at my map", "use map", "use my map"
     ],
     "sweep": [
@@ -29,8 +29,8 @@ commands_dict = {
         "check if the treasure is near"
     ],
     "help": [
-        "help", "commands", "options", "I don't know what to do", "what can I do", 
-        "what can I do?", "what do I do", "what do I do?"
+        "help", "commands", "options", "i don't know what to do", "what can i do", 
+        "what can i do?", "what do i do", "what do i do?"
     ],
     "debug": [
         "cheat", "debug"

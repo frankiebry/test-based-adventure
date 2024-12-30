@@ -3,6 +3,7 @@
 - [ ] Allow player to type more commands that do the same thing (e.g. "go north", "move north", "go up", etc)
 
 ### Ideas for changes/improvements
+- [ ] Use colorized text to highlight keywords.
 - [ ] Add inventory using a dictionary.
 - [ ] Allow player to find more items
 - [ ] Warn player when monster is close
