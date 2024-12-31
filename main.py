@@ -102,12 +102,8 @@ class Game:
                 self.key_position = None  # Remove the key from the map
                 typewriter("You found the \033[93mkey\033[0m!", 0.05)
                 print(' ')
-            # Generate a random number between 0 and 1
-            elif random.random() < 0.1: # 10% chance
-                inventory.add_item("torch", 1) # Add a torch to the inventory
-                typewriter("You found a torch!", 0.05)
             else:
-                typewriter("There is nothing here.", 0.05)
+                inventory.find_random_item()
 
     def display_commands(self):
         """Display the list of available commands to the player."""
