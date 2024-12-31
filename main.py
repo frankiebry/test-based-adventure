@@ -97,7 +97,7 @@ class Game:
             inventory.use_item("monster repellent")
             # Set the repellent effect on the monster
             monster.repellent_turns_left = 3
-            typewriter("You used a \033[95mmonster repellent\033.", 0.05)
+            typewriter("You used a \033[95mmonster repellent\033.", 0.05) # why doesn't the "." show up?
             typewriter("\033[95mYou hear a disgruntled growl as the sound of heavy footfalls fade away.\033[0m", 0.05)
         else:
             typewriter("You don't have any monster repellent.", 0.05)
