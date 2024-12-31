@@ -13,6 +13,7 @@
 - [ ] Convert this entire game into a graphical version
 - [ ] Add additional commands that display text but do nothing (e.g. "bang on door" -> "there is no response")
 - [ ] Warning message when monster is near should not repeat, it should say something different to indicate the monster is chasing you.
+- [ ] The "What do you want to do?: " line is very repetitive
 
 ### Bugs/Issues
 - [ ] X's are no longer being drawn on the map for spots that have been already dug!
