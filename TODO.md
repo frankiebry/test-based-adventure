@@ -4,19 +4,16 @@
 ### Ideas for changes/improvements
 - [ ] Add option to move 2 or 3 paces at once?
 - [ ] Add combat and HP (change "caught" to "encounter")
-- [ ] If player digs, and the key isn't there, chance to find more torches or other items
-- [ ] Allow player to find more items, helpful items like torches and score items like gems
+- [ ] Add item that repels the monster
+- [ ] Add treasure that adds to a high score
 - [ ] Add high score file using JSON
 - [ ] Monster heads straight to the player's last known location when a torch is lit, unless it's 2 paces away.
-- [ ] Player finds items that protect them from the monster?
-- [ ] Introduce rare item that lights up cave completely, and reveals treasure on map, but monster moves faster and/or beelines for the player
-- [ ] Convert this entire game into a graphical version
 - [ ] Add additional commands that display text but do nothing (e.g. "bang on door" -> "there is no response")
 - [ ] Warning message when monster is near should not repeat, it should say something different to indicate the monster is chasing you.
 - [ ] The "What do you want to do?: " line is very repetitive
+- [ ] Convert this entire game into a graphical version
 
 ### Bugs/Issues
-- [ ] X's are no longer being drawn on the map for spots that have been already dug!
 - [ ] The alt codes for the icons on the map are different sizes and make the map look wonky. Find a set that are all the same dimensions
 - [ ] Metal detector doesn't seem to work properly sometimes. I'll be standing one tile next to the treasure and it's silent? But other playthroughs it works perfectly...
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
