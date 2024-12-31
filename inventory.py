@@ -7,6 +7,7 @@ class Inventory:
         self.items = {
             "torch": 3,  # Start with 3 torches
             "key": 0,    # Start with no key
+            "monster repellent": 1, # Start with one monster repellent
             "shovel": 1, # Start with a shovel (make this a key item?)
             "map": 1,    # Start with a map (make this a key item?)
             "metal detector": 1, # Start with a metal detector
