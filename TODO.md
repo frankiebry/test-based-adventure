@@ -4,9 +4,8 @@
 ### Ideas for changes/improvements
 - [ ] Add option to move 2 or 3 paces at once?
 - [ ] Add combat and HP (change "caught" to "encounter")
-- [ ] Add item that repels the monster
-- [ ] Add treasure that adds to a high score
-- [ ] Add high score file using JSON
+- [ ] Make monster repellent cause the monster to stop chasing you for X amount of turns
+- [ ] Add high score file using JSON and count score with gems at the end of each game
 - [ ] Monster heads straight to the player's last known location when a torch is lit, unless it's 2 paces away.
 - [ ] Add additional commands that display text but do nothing (e.g. "bang on door" -> "there is no response")
 - [ ] Warning message when monster is near should not repeat, it should say something different to indicate the monster is chasing you.
