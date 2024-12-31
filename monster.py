@@ -13,6 +13,7 @@ class Monster:
         """
         self.position = initial_position
         self.turns_since_move = 0  # Track how many turns since the last move for the cooldown timer
+        self.repellent_turns_left = 0  # Track how many turns the repellent is active
 
     def random_move(self):
         """
@@ -83,11 +84,17 @@ class Monster:
         Args:
         player_position (tuple): The (x, y) coordinates of the player's position.
         """
+        
+        # TODO write this more elegantly
         self.turns_since_move += 1
         if self.turns_since_move >= 2:
             self.turns_since_move = 0
+            # If repellent is active, move randomly for 3 turns
+            if self.repellent_turns_left > 0:
+                self.repellent_turns_left -= 1
+                self.random_move()
             # If the monster is close to the player, it chases the player,
-            if self.is_near_player(player_position):
+            elif self.is_near_player(player_position):
                 typewriter("\033[91mYou hear a bloodcurdling howl as a foul stench fills the air.\033[0m", 0.05)
                 self.chase_player(player_position)
             # else it moves randomly

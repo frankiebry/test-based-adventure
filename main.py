@@ -88,6 +88,15 @@ class Game:
             else:
                 typewriter("The metal detector is silent.", 0.05)
 
+    def use_monster_repellent(self, monster):
+        if inventory.has_item("monster repellent"):
+            inventory.use_item("monster repellent")
+            # Set the repellent effect on the monster
+            monster.repellent_turns_left = 3
+            typewriter("You used a monster repellent. The monster won't chase you for 3 turns.", 0.05)
+        else:
+            typewriter("You don't have any monster repellent.", 0.05)
+
     # TODO Can this be written more elegantly?
     def dig(self):
         """Handle the player digging at their current position."""
@@ -205,7 +214,10 @@ class Game:
 
                 case _ if command in commands_dict["sweep"]:
                     self.use_metal_detector()
-
+                    
+                case _ if command in commands_dict["repel"]:
+                    self.use_monster_repellent()
+                    
                 # Handle all this in a function?
                 case _ if command in commands_dict["unlock"]:
                     if self.player_position == self.exit_position: # Check if the player is at the exit

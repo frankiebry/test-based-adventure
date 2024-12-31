@@ -35,6 +35,13 @@ commands_dict = {
         "check for treasure", "check for treasure here", "check for treasure nearby", 
         "check if the treasure is near"
     ],
+    "repel": [
+        "use monster repellent", "use repellent", "use repellent here", "use monster repellent here",
+        "use my monster repellent", "use my repellent", "use my repellent here", "use my monster repellent here",
+        "use a monster repellent", "use a repellent", "use a repellent here", "use a monster repellent here",
+        "use the monster repellent", "use the repellent", "use the repellent here", "use the monster repellent here",
+        "spray repellent", "spray monster repellent", "spray repellent here", "spray monster repellent here",
+    ],
     "unlock": [
         "unlock the door", "open the door", "use the key", "use key",
         "unlock door", "open door", "use key here", "use the key here",
