@@ -47,11 +47,16 @@ class Inventory:
         if self.items.get(item, 0) > 0: # Second argument is the default value if item is not found
             self.items[item] -= 1
 
+    # The values defined here and in the init method are redundant
     def reset(self):
         """Reset the inventory to its default state."""
         self.items = {
-            "torch": 3,  # Reset torches to 3
-            "key": 0,    # Reset key count to 0
+            "torch": 3,  # Start with 3 torches
+            "key": 0,    # Start with no key
+            "monster repellent": 1, # Start with one monster repellent
+            "shovel": 1, # Start with a shovel (make this a key item?)
+            "map": 1,    # Start with a map (make this a key item?)
+            "metal detector": 1, # Start with a metal detector
         }
 
     def has_item(self, item):

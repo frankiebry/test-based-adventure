@@ -37,7 +37,7 @@ class Monster:
                 self.position = (self.position[0] - 1, self.position[1])
                 break
             elif direction == "yawn":
-                typewriter("You hear a low yawn echoing in the distance", 0.05)
+                typewriter("You hear a low yawn echoing in the distance.", 0.05)
                 break
 
     def is_near_player(self, player_position):
@@ -115,7 +115,6 @@ class Monster:
         # If repellent is active, the monster avoids the player
         if self.repellent_turns_left > 0:
             self.repellent_turns_left -= 1
-            typewriter("\033[95mYou hear a disgruntled growl as the sound of heavy footfalls fade away.\033[0m", 0.05)
             self.avoid_player(player_position)
         # If the monster is close to the player and no repellent is active, it chases the player,
         elif self.is_near_player(player_position):
