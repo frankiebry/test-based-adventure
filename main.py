@@ -94,18 +94,20 @@ class Game:
         """Handle the player digging at their current position."""
         if self.player_position in self.searched_positions: # Check if the player has already dug here
             typewriter("You have already dug here.", 0.05)
-        elif self.player_position == self.key_position: # Check if the player has found the key
-            self.searched_positions.append(self.player_position) # Mark the spot as searched
-            inventory.add_item("key", 1)  # Add the key to the inventory
-            self.key_position = None  # Remove the key from the map
-            typewriter("You found the \033[93mkey\033[0m!", 0.05)
-            print(' ')
-        # Generate a random number between 0 and 1
-        elif random.random() < 0.1: # 10% chance
-            inventory.add_item("torch", 1) # Add a torch to the inventory
-            typewriter("You found a torch!", 0.05)
         else:
-            typewriter("There is nothing here.", 0.05)
+            self.searched_positions.append(self.player_position) # Mark the spot as searched
+        
+            if self.player_position == self.key_position: # Check if the player has found the key
+                inventory.add_item("key", 1)  # Add the key to the inventory
+                self.key_position = None  # Remove the key from the map
+                typewriter("You found the \033[93mkey\033[0m!", 0.05)
+                print(' ')
+            # Generate a random number between 0 and 1
+            elif random.random() < 0.1: # 10% chance
+                inventory.add_item("torch", 1) # Add a torch to the inventory
+                typewriter("You found a torch!", 0.05)
+            else:
+                typewriter("There is nothing here.", 0.05)
 
     def display_commands(self):
         """Display the list of available commands to the player."""
