@@ -15,7 +15,9 @@ commands_dict = {
     ],
     "dig": [
         "dig", "dig for treasure", "dig here", "look for treasure", 
-        "look for treasure here", "search", "search here", "search for treasure"
+        "look for treasure here", "search", "search here", "search for treasure",
+        "use shovel", "use shovel here", "use my shovel", "use my shovel here",
+        "use the shovel", "use the shovel here", "use the shovel to dig",
     ],
     "inventory": [
         "check inventory", "show inventory", "view inventory", "view my inventory",
