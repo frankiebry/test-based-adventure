@@ -5,6 +5,7 @@
 - [ ] Test difficulty with repellent, and if it's too easy remove cooldown timer from monster movement
 - [ ] Prevent monster from spawning too close to the player at the start of the game
 - [ ] Display a message when the monster repellent wears off. The condition can't just be repellent_turns_left = 0 because that is the initial state. The message must only appear if the player has used a repellent at least once
+- [ ] Do something about the redundant initial values defined in inventory
 
 ### Ideas for changes/improvements
 - [ ] Add option to move 2 or 3 paces at once?
