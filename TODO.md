@@ -1,5 +1,8 @@
 ### Todo
 - [ ] More immersive writing
+- [ ] Beta test new monster repellent command
+- [ ] Change logic in monster.move() to properly track turns
+- [ ] Test difficulty with repellent, and if it's too easy remove cooldown timer from monster movement
 
 ### Ideas for changes/improvements
 - [ ] Add option to move 2 or 3 paces at once?
