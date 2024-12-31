@@ -1,4 +1,5 @@
 ### Todo
+- [ ] just call self.reset() in the inventory's init method, the same way as in settings, to remove redundant code. Move reset up too.
 - [ ] More immersive writing
 - [ ] Beta test new monster repellent command
 - [ ] Change logic in monster.move() to properly track turns
