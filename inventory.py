@@ -7,6 +7,9 @@ class Inventory:
         self.items = {
             "torch": 3,  # Start with 3 torches
             "key": 0,    # Start with no key
+            "shovel": 1, # Start with a shovel (make this a key item?)
+            "map": 1,    # Start with a map (make this a key item?)
+            "metal detector": 1, # Start with a metal detector
         }
 
     def add_item(self, item, count=1):

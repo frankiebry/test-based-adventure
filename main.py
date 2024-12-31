@@ -75,18 +75,22 @@ class Game:
 
     def use_metal_detector(self):
         """Use the metal detector to get a hint about the key's location."""
-        if self.key_position is None:
-            typewriter("The metal detector is silent.", 0.05)
-        else:
-            distance = calculate_distance(self.player_position, self.key_position)
-            if distance == 0:
-                typewriter("The metal detector is going wild!!", 0.05)
-            elif distance == 1:
-                typewriter("The metal detector is beeping rapidly!", 0.05)
-            elif distance == 2:
-                typewriter("The metal detector is slowly beeping.", 0.05)
-            else:
+        if inventory.has_item("metal detector"): # Check if the player has a metal detector:
+            
+            # Right now this code will always be executed, consider making the metal detector have limited uses
+            # or make it a key item that is found from digging
+            if self.key_position is None:
                 typewriter("The metal detector is silent.", 0.05)
+            else:
+                distance = calculate_distance(self.player_position, self.key_position)
+                if distance == 0:
+                    typewriter("The metal detector is going wild!!", 0.05)
+                elif distance == 1:
+                    typewriter("The metal detector is beeping rapidly!", 0.05)
+                elif distance == 2:
+                    typewriter("The metal detector is slowly beeping.", 0.05)
+                else:
+                    typewriter("The metal detector is silent.", 0.05)
 
     def use_monster_repellent(self, monster):
         if inventory.has_item("monster repellent"):
@@ -113,22 +117,23 @@ class Game:
             else:
                 inventory.find_random_item()
 
-    def display_commands(self):
-        """Display the list of available commands to the player."""
-        print(' ')
-        typewriter("*****************", 0.02)
-        typewriter("* Legal commands *", 0.02)
-        typewriter("*****************", 0.02)
-        print(' ')
-        typewriter("MOVE NORTH", 0.02)
-        typewriter("MOVE SOUTH", 0.02)
-        typewriter("MOVE EAST", 0.02)
-        typewriter("MOVE WEST", 0.02)
-        typewriter("DIG HERE", 0.02)
-        typewriter("USE A TORCH: check your map", 0.02)
-        typewriter("SWEEP FOR KEY: use metal detector", 0.02)
-        typewriter("UNLOCK DOOR: unlock the exit", 0.02)
-        print(' ')
+    # # Rewrite this entire thing
+    # def display_commands(self):
+    #     """Display the list of available commands to the player."""
+    #     print(' ')
+    #     typewriter("*****************", 0.02)
+    #     typewriter("* Legal commands *", 0.02)
+    #     typewriter("*****************", 0.02)
+    #     print(' ')
+    #     typewriter("MOVE NORTH", 0.02)
+    #     typewriter("MOVE SOUTH", 0.02)
+    #     typewriter("MOVE EAST", 0.02)
+    #     typewriter("MOVE WEST", 0.02)
+    #     typewriter("DIG HERE", 0.02)
+    #     typewriter("USE A TORCH: check your map", 0.02)
+    #     typewriter("SWEEP FOR KEY: use metal detector", 0.02)
+    #     typewriter("UNLOCK DOOR: unlock the exit", 0.02)
+    #     print(' ')
 
     def debug(self):
         """Display the full map, including the key's location (cheat/debug mode)."""
@@ -148,9 +153,9 @@ class Game:
             typewriter('You are in a dark cave and need to find the \033[93mkey\033[0m to the exit.', 0.05)
             typewriter('Each turn you can try to do one of the following:', 0.05)
             typewriter('* Move north, south, east or west', 0.05)
-            typewriter('* Use your metal detector to find the \033[93mkey\033[0m.', 0.05)
             typewriter('* Dig to find the \033[93mkey\033[0m. You may also find helpful items or treasure.', 0.05)
-            typewriter('* Light a torch to check your map. You only get 3 torches.', 0.05)
+            typewriter('* Use an item from your inventory', 0.05)
+            typewriter('* Check your inventory', 0.05)
             typewriter('* Try to unlock the exit.', 0.05)
             typewriter(
                 'Beware, there is a \033[91mmonster\033[0m in the cave with you. '
@@ -236,9 +241,10 @@ class Game:
                     else:
                         typewriter("There is nothing to unlock here.", 0.05)
 
-                case _ if command in commands_dict["help"]:
-                    self.display_commands()
-                    monster_should_move = False
+                # # re-enable after the commands hints are re-written
+                # case _ if command in commands_dict["help"]:
+                #     self.display_commands()
+                #     monster_should_move = False
 
                 case _ if command in commands_dict["debug"]:
                     print(' ')
