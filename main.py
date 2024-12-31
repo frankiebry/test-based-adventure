@@ -4,7 +4,6 @@ from settings import settings
 from utils import calculate_distance
 from commands import commands_dict 
 from inventory import inventory
-import random
 
 # Our main game class
 class Game:

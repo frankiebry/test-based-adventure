@@ -40,10 +40,8 @@ class Inventory:
 
     def use_item(self, item):
         """Use an item from the inventory, if available."""
-        if self.items.get(item, 0) > 0:
+        if self.items.get(item, 0) > 0: # Second argument is the default value if item is not found
             self.items[item] -= 1
-            return True
-        return False
 
     def reset(self):
         """Reset the inventory to its default state."""
