@@ -12,6 +12,8 @@
 - [ ] Display a message when the monster repellent wears off. The condition can't just be repellent_turns_left = 0 because that is the initial state. The message must only appear if the player has used a repellent at least once
 
 ### Ideas for changes/improvements
+- [ ] When monster attacks, it can do something else instead of end the game (lose metal detector, etc)
+- [ ] Add roaming thief character?
 - [ ] Add option to move 2 or 3 paces at once?
 - [ ] Add combat and HP (change "caught" to "encounter")
 - [ ] Make monster repellent cause the monster to stop chasing you for X amount of turns
