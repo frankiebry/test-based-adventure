@@ -3,6 +3,7 @@
 - [ ] Use colorization on words in inventory
 - [ ] Define key items vs consumable items
 - [ ] Organize the way inventory is displayed in a better way...
+- [ ] Gems are too easy too find, lower chances (nix D20 system) and add gold coins
 - [ ] More immersive writing
 - [ ] Beta test new monster repellent command
 - [ ] Change logic in monster.move() to properly track turns
