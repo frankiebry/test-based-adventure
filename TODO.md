@@ -30,6 +30,7 @@
 - [ ] The player, monster and treasure can stack, and the last icon that is drawn on the map will cover any icon drawn before it.
 - [ ] Apparently if ANSI escape codes that set the text color explicitly are not reset with \033[0m, the terminal will continue applying the color to subsequent text, even after the program exits. The terminal has to be closed to fix this.
 - [ ] The typewriter "stutters" when printing color text
+- [ ] The monster moves AFTER the map is drawn, so the player see information that is already out of date.
 
 ### Cleaner Code
 - [ ] All strings should use '' instead of ""? Or at least just be consistent
